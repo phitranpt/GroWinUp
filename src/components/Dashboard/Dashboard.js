@@ -7,25 +7,22 @@ import Button from '@material-ui/core/Button';
 
 class Dashboard extends Component {
 
-    addTask = () => {
-        console.log('addTask works!');
+    addTask = (id) => {
+        console.log('addTask works!', id);
     }
 
     cardAction = () => {
         console.log('cardAction works!');
     }
 
-    componentDidMount() {
-        this.getPersonList();
-    }
-
+    //DELETE person from list
     deleteProfile = (id) => {
         console.log('delete btn!');
         this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
     }
 
     //GET list of people
-    getPersonList() {
+    componentDidMount() {
         console.log('in getPersonList');
         this.props.dispatch( { type: 'GET_PERSON' } )
     }
@@ -50,7 +47,7 @@ class Dashboard extends Component {
                                 </CardContent>
                             </CardActionArea>
                                 <CardActions>
-                                    <Button className="cardBtn" size="small" color="primary" onClick={this.addTask}>
+                                    <Button className="cardBtn" size="small" color="primary" onClick={()=> this.addTask(person.id)}>
                                         Add Task
                                     </Button>
                                     <Button className="cardBtn" size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>

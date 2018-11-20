@@ -45,10 +45,23 @@ function* getSuggestedTaskSaga(action) {
   }
 }
 
+//GET to do list for each person from db
+function* getToDoListSaga(action) {
+  console.log('in getToDoListSaga');
+  try {
+    const response = yield call(axios.get, '/api/todo');
+    yield put( { type: 'SET_TODO', payload: response.data } )
+  }
+  catch(error) {
+    console.log('error in GET request', error);
+  }
+}
+
 // some sagas trigger other sagas, as an example
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
+  yield takeEvery('GET_TODO', getToDoListSaga);
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
   yield takeEvery('GET_PERSON', getPersonListSaga);
   yield takeEvery('DELETE_PERSON', deletePersonSaga);

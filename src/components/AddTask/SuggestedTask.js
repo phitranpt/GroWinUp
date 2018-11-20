@@ -6,16 +6,11 @@ import { CardContent, Typography, CardActionArea } from '@material-ui/core';
 
 class SuggestedTask extends Component {
 
-    componentDidMount() {
-        this.getSuggestedTask();
-    }
-
     handleClick = () => {
         console.log('suggestedTask btn works!');
     }
 
-    getSuggestedTask() {
-        console.log('in getSuggestedTask');
+    componentDidMount() {
         this.props.dispatch( { type: 'GET_TASK' } )
     }
 
