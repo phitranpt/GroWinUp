@@ -29,12 +29,6 @@ class AddUser extends Component {
         });
     }
 
-    handleCheck = name => event => {
-        this.setState({
-            [name]: event.target.checked
-        })
-    }
-
     render() {
         return (
             <div>

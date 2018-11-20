@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Dashboard.css';
+import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, CardActions, CardActionArea, CardMedia } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
