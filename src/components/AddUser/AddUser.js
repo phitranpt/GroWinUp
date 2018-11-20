@@ -11,29 +11,50 @@ class AddUser extends Component {
         admin: ''
     }
 
+    addNewUser = (event) => {
+        event.preventDefault();
+        this.props.dispatch( { type: 'ADD_USER' } )
+        this.setState({
+            username: '',
+            password: '',
+            profile_image: '',
+            admin: ''
+        })
+        console.log('state', this.state);
+    }
+
     handleChange = (event) => {
-        console.log('in username form', event);
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    }
+
+    handleCheck = name => event => {
+        this.setState({
+            [name]: event.target.checked
+        })
     }
 
     render() {
         return (
             <div>
                 <h1>Add User Page</h1>
-                <form className="userForm">
+                <form onSubmit={this.addNewUser}>
                     <TextField 
-                    required
                     label="Create User Name"
-                    // value={this.state.username}
+                    value={this.state.username}
                     onChange={this.handleChange}
                     margin="normal"
+                    name="username"
                     /><br></br>
                      <TextField 
-                    required
                     label="Create New Password"
-                    // value={this.state.username}
+                    value={this.state.password}
                     onChange={this.handleChange}
                     margin="normal"
-                    />
+                    name="password"
+                    /><br></br>
+                    <input type="submit"/>
                 </form>
             </div>
         );
