@@ -8,6 +8,32 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
+
+//DELETE person from db
+function* deletePersonSaga(action) {
+  console.log('in deletePersonSaga', action);
+  try {
+    yield call(axios.delete, `/api/person/${action.payload}`);
+    yield put( { type: 'GET_PERSON' } );
+  }
+  catch(error) {
+    console.log('error in DELETE request', error);
+  }
+}
+
+//GET list of persons who are not admins from db
+function* getPersonListSaga(action) {
+  console.log('in getPersonList');
+  try {
+    const response = yield call(axios.get, '/api/person');
+    yield put( { type: 'SET_PERSON', payload: response.data } )
+  }
+  catch(error) {
+    console.log('error in GET request', error);
+  }
+}
+
+//GET list of suggested tasks from db
 function* getSuggestedTaskSaga(action) {
   console.log('in getSuggestedTaskSaga');
   try {
@@ -24,6 +50,8 @@ function* getSuggestedTaskSaga(action) {
 // and login triggers setting the user
 export default function* rootSaga() {
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
+  yield takeEvery('GET_PERSON', getPersonListSaga);
+  yield takeEvery('DELETE_PERSON', deletePersonSaga);
   
   yield all([
     loginSaga(),

@@ -15,36 +15,51 @@ class Dashboard extends Component {
         console.log('cardAction works!');
     }
 
-    deleteProfile = () => {
-        console.log('delete btn!');   
+    componentDidMount() {
+        this.getPersonList();
+    }
+
+    deleteProfile = (id) => {
+        console.log('delete btn!');
+        this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
+    }
+
+    //GET list of people
+    getPersonList() {
+        console.log('in getPersonList');
+        this.props.dispatch( { type: 'GET_PERSON' } )
     }
 
     render() {
         return (
             <div>
                 <h1>This is the Dashboard</h1>
-                <Card className="card">
-                    <CardActionArea onClick={this.cardAction}>
-                        <CardMedia
-                            className="cardImage"
-                            image={require ("../../Media/phitran.jpg")}
-                            title="Profile Image"
-                        />
-                        <CardContent>
-                            <Typography className="name" gutterBottom variant="h5" component="h2">
-                                Phi Tran
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                        <CardActions>
-                            <Button className="cardBtn" size="small" color="primary" onClick={this.addTask}>
-                                Add Task
-                            </Button>
-                            <Button className="cardBtn" size="small" color="secondary" onClick={this.deleteProfile}>
-                                Delete
-                            </Button>
-                        </CardActions>
-                </Card>
+                {this.props.reduxState.personList.map(person => {
+                    return (
+                        <Card className="card" key={person.id} >
+                            <CardActionArea onClick={this.cardAction}>
+                                 <CardMedia
+                                className="cardImage"
+                                image={require ("../../Media/phitran.jpg")}
+                                title="Profile Image"
+                                />
+                                <CardContent>
+                                    <Typography className="name" gutterBottom variant="h5" component="h2">
+                                        {person.username}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                                <CardActions>
+                                    <Button className="cardBtn" size="small" color="primary" onClick={this.addTask}>
+                                        Add Task
+                                    </Button>
+                                    <Button className="cardBtn" size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>
+                                         Delete
+                                    </Button>
+                                </CardActions>
+                         </Card>
+                    )
+                })}
             </div>
         );
     }
