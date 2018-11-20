@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const taskRouter = require('./routes/task.router');
 const personRouter = require('./routes/person.router');
 const todoRouter = require('./routes/todo.router');
+const gallery = require('./routes/gallery.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/api/person', personRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/todo', todoRouter);
 app.use('/api/user', userRouter);
+app.use('/api/gallery', gallery);
 
 // Serve static files
 app.use(express.static('build'));
