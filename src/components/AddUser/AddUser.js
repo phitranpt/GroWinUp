@@ -11,9 +11,9 @@ class AddUser extends Component {
         admin: ''
     }
 
-    addNewUser = (event) => {
+    addNewPerson = (event) => {
         event.preventDefault();
-        this.props.dispatch( { type: 'ADD_USER' } )
+        this.props.dispatch( { type: 'REGISTER_NEW_PERSON', payload: this.state } )
         this.setState({
             username: '',
             password: '',
@@ -33,7 +33,7 @@ class AddUser extends Component {
         return (
             <div>
                 <h1>Add User Page</h1>
-                <form onSubmit={this.addNewUser}>
+                <form onSubmit={this.addNewPerson}>
                     <TextField 
                     label="Create User Name"
                     value={this.state.username}

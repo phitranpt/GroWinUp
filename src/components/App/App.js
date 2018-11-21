@@ -41,17 +41,17 @@ class App extends Component {
               component={Dashboard}
             />
             <ProtectedRoute
-              exact
+              
               path="/addTask"
               component={AddTask}
             />
             <ProtectedRoute
-              exact
+              
               path="/addUser"
               component={AddUser}
             />
             <ProtectedRoute
-              exact
+              
               path="/AdminInbox"
               component={AdminInbox}
             />

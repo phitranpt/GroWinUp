@@ -4,7 +4,7 @@ const router = express.Router();
 
 //GET all suggested task router
 router.get('/', (req, res) => {
-    const sqlText = 'SELECT * FROM person WHERE person.admin = false;';
+    const sqlText = 'SELECT * FROM person ORDER BY id ASC;';
     pool.query(sqlText)
         .then((result) => {
             console.log('got person list back from GET router', result);
@@ -14,11 +14,6 @@ router.get('/', (req, res) => {
             console.log('error completing GET query', error);
             res.sendStatus(500);
         });
-});
-
-//POST route
-router.post('/', (req, res) => {
-
 });
 
 //DELETE selected user from person list
