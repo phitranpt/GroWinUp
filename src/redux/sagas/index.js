@@ -37,7 +37,7 @@ function* getPersonListSaga(action) {
 function* getSuggestedTaskSaga(action) {
   console.log('in getSuggestedTaskSaga');
   try {
-    const response = yield call(axios.get, `/api/task/${action.payload}`);
+    const response = yield call(axios.get, `/api/task/`);
     yield put( { type: 'SET_TASK', payload: response.data } )
   }
   catch(error) {

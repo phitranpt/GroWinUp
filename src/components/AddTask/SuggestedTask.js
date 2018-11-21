@@ -6,10 +6,6 @@ import { CardContent, Typography, CardActionArea } from '@material-ui/core';
 
 class SuggestedTask extends Component {
 
-    handleClick = () => {
-        console.log('suggestedTask btn works!');
-    }
-
     render() {
         return (
             <div>

@@ -14,7 +14,7 @@ class Dashboard extends Component {
     addTask = (id) => {
         console.log('addTask works!', id);
         this.props.dispatch( { type: 'GET_TODO', payload: id } )
-        this.props.dispatch( { type: 'GET_TASK', payload: id } )
+        this.props.dispatch( { type: 'GET_TASK' } )
         this.props.history.push('/addTask')
     }
 
