@@ -10,10 +10,6 @@ class SuggestedTask extends Component {
         console.log('suggestedTask btn works!');
     }
 
-    componentDidMount() {
-        this.props.dispatch( { type: 'GET_TASK' } )
-    }
-
     render() {
         return (
             <div>

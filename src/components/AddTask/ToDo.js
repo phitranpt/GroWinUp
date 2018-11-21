@@ -5,11 +5,6 @@ import { CardContent, Typography, CardActionArea } from '@material-ui/core';
 
 class ToDo extends Component {
 
-    componentDidMount() {
-        console.log('in todo list');
-        this.props.dispatch( { type: 'GET_TODO' } )
-    }
-
     render() {
         return (
             <div>

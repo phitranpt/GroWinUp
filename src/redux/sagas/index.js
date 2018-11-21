@@ -25,7 +25,7 @@ function* deletePersonSaga(action) {
 function* getPersonListSaga(action) {
   console.log('in getPersonList');
   try {
-    const response = yield call(axios.get, '/api/person');
+    const response = yield call(axios.get, '/api/person/');
     yield put( { type: 'SET_PERSON', payload: response.data } )
   }
   catch(error) {
@@ -37,7 +37,7 @@ function* getPersonListSaga(action) {
 function* getSuggestedTaskSaga(action) {
   console.log('in getSuggestedTaskSaga');
   try {
-    const response = yield call(axios.get, '/api/task');
+    const response = yield call(axios.get, `/api/task/${action.payload}`);
     yield put( { type: 'SET_TASK', payload: response.data } )
   }
   catch(error) {
@@ -49,7 +49,7 @@ function* getSuggestedTaskSaga(action) {
 function* getToDoListSaga(action) {
   console.log('in getToDoListSaga');
   try {
-    const response = yield call(axios.get, '/api/todo');
+    const response = yield call(axios.get, `/api/todo/${action.payload}`);
     yield put( { type: 'SET_TODO', payload: response.data } )
   }
   catch(error) {

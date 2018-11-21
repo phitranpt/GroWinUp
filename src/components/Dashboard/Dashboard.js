@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, CardActions, CardActionArea, CardMedia } from '@material-ui/core';
+
 import Button from '@material-ui/core/Button';
+
+import UserPage from '../UserPage/UserPage';
 
 class Dashboard extends Component {
 
+    //navigates admin to users addTask page
     addTask = (id) => {
         console.log('addTask works!', id);
-    }
-
-    cardAction = () => {
-        console.log('cardAction works!');
+        this.props.dispatch( { type: 'GET_TODO', payload: id } )
+        this.props.dispatch( { type: 'GET_TASK', payload: id } )
+        this.props.history.push('/addTask')
     }
 
     //DELETE person from list
@@ -31,6 +34,7 @@ class Dashboard extends Component {
         return (
             <div>
                 <h1>This is the Dashboard</h1>
+                <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
                         <Card className="card" key={person.id} >
