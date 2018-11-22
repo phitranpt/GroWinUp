@@ -17,6 +17,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import AddTask from '../AddTask/AddTask';
 import AddUser from '../AddUser/AddUser';
 import AdminInbox from '../AdminInbox/AdminInbox';
+import AddNewTask from '../AddTask/AddNewTask';
 
 import './App.css';
 
@@ -41,18 +42,19 @@ class App extends Component {
               component={Dashboard}
             />
             <ProtectedRoute
-              
               path="/addTask"
               component={AddTask}
             />
             <ProtectedRoute
-              
+              path="/addNewTask"
+              component={AddNewTask}
+            />
+            <ProtectedRoute
               path="/addUser"
               component={AddUser}
             />
             <ProtectedRoute
-              
-              path="/AdminInbox"
+              path="/adminInbox"
               component={AdminInbox}
             />
             <Route render={() => <h1>404</h1>} />

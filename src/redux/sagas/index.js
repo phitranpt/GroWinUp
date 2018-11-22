@@ -9,6 +9,18 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
 
+//POST new task to db
+function* addNewTaskSaga(action) {
+  console.log('in addNewTaskSaga', action.payload);
+  try {
+    yield call(axios.post, '/api/task', action.payload);
+    yield put( { type: 'GET_TASK' } );
+  }
+  catch(error) {
+    console.log('error with POST new task request', error);
+  }
+}
+
 //DELETE person from db
 function* deletePersonSaga(action) {
   console.log('in deletePersonSaga', action);
@@ -65,6 +77,7 @@ export default function* rootSaga() {
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
   yield takeEvery('GET_PERSON', getPersonListSaga);
   yield takeEvery('DELETE_PERSON', deletePersonSaga);
+  yield takeEvery('ADD_NEW_TASK', addNewTaskSaga);
   
   yield all([
     loginSaga(),
