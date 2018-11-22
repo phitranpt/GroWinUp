@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
+import { HashRouter as Router, Link } from "react-router-dom";
 
 const newTask = {
     task_name: '',
@@ -28,6 +29,11 @@ class AddNewTask extends Component {
         return (
             <div>
                 <h1>Add New Task</h1>
+                
+                <Router>
+                    <Link to="/addTask">Back</Link>
+                </Router>
+
                 <form onSubmit={this.addNewTask}>
                     <TextField 
                     label="Enter a new task"
