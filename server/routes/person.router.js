@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 //DELETE selected user from person list
 router.delete('/:id', (req, res) => {
-    console.log('in DELETE router', req.params);
+    console.log('in DELETE person router', req.params);
     const sqlText = 'DELETE FROM person WHERE id=$1;';
     pool.query(sqlText, [req.params.id])
         .then(() => {

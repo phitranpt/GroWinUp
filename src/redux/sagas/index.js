@@ -26,7 +26,8 @@ function* addTaskToUser(action) {
   console.log('in addTaskToUser', action.payload);
   try {
     yield call(axios.post, `/api/todo/`, action.payload);
-    yield put( { type: 'GET_TODO' } );
+    yield put( { type: 'GET_TODO', payload: action.payload.userId } );
+    yield put( { type: 'GET_TASK', payload: action.payload.userId } );
   }
   catch(error) {
     console.log('error with POST new task to todo list request', error);
@@ -41,7 +42,7 @@ function* deletePersonSaga(action) {
     yield put( { type: 'GET_PERSON' } );
   }
   catch(error) {
-    console.log('error in DELETE request', error);
+    console.log('error in DELETE person request', error);
   }
 }
 
@@ -71,7 +72,7 @@ function* getSuggestedTaskSaga(action) {
 
 //GET to do list for each person from db
 function* getToDoListSaga(action) {
-  console.log('in getToDoListSaga');
+  console.log('in getToDoListSaga', action.payload);
   try {
     const response = yield call(axios.get, `/api/todo/${action.payload}`);
     yield put( { type: 'SET_TODO', payload: response.data } )
