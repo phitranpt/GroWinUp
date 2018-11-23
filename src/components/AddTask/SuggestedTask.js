@@ -7,7 +7,14 @@ import { CardContent, Typography, CardActionArea } from '@material-ui/core';
 class SuggestedTask extends Component {
 
     handleClick = (id) => {
-        console.log('btn works!', id);
+        console.log('task id', id);
+        console.log('user id', this.props.reduxState.todoList[0].id);
+        this.props.dispatch( 
+            {type: 'ADD_TASK_TO_USER', 
+            payload: {
+                taskId: id,
+                userId: this.props.reduxState.todoList[0].id
+            }})
     }
 
     render() {
@@ -16,10 +23,10 @@ class SuggestedTask extends Component {
                 <h5>Suggested Tasks</h5>
                 {this.props.reduxState.taskList.map(task => {
                     return (
-                        <Card key={task.id}>
+                        <Card className="taskCard" key={task.id}>
                         <CardActionArea onClick={()=> this.handleClick(task.id)}>
                             <CardContent>
-                                <Typography className="suggestedTaskName" gutterBottom variant="h5" component="h2">
+                                <Typography className="name" gutterBottom variant="h6" component="h2">
                                     {task.task_name}
                                 </Typography>
                             </CardContent>

@@ -10,6 +10,10 @@
     padding-top: 10px;
 }
 
+.taskCard {
+    height: 45px;
+}
+
 .userForm {
     width: 50%;
     text-align: center;

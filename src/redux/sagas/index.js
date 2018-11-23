@@ -13,11 +13,23 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 function* addNewTaskSaga(action) {
   console.log('in addNewTaskSaga', action.payload);
   try {
-    yield call(axios.post, '/api/task', action.payload);
+    yield call(axios.post, '/api/task/', action.payload);
     yield put( { type: 'GET_TASK' } );
   }
   catch(error) {
     console.log('error with POST new task request', error);
+  }
+}
+
+//POST new task into user todo list
+function* addTaskToUser(action) {
+  console.log('in addTaskToUser', action.payload);
+  try {
+    yield call(axios.post, `/api/todo/`, action.payload);
+    yield put( { type: 'GET_TODO' } );
+  }
+  catch(error) {
+    console.log('error with POST new task to todo list request', error);
   }
 }
 
@@ -73,11 +85,12 @@ function* getToDoListSaga(action) {
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
+  yield takeEvery('ADD_NEW_TASK', addNewTaskSaga);
+  yield takeEvery('ADD_TASK_TO_USER', addTaskToUser);
+  yield takeEvery('DELETE_PERSON', deletePersonSaga);
+  yield takeEvery('GET_PERSON', getPersonListSaga);
   yield takeEvery('GET_TODO', getToDoListSaga);
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
-  yield takeEvery('GET_PERSON', getPersonListSaga);
-  yield takeEvery('DELETE_PERSON', deletePersonSaga);
-  yield takeEvery('ADD_NEW_TASK', addNewTaskSaga);
   
   yield all([
     loginSaga(),

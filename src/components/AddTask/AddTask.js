@@ -13,7 +13,6 @@ class AddTask extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.props.reduxState)}
                 <Add onClick={this.addNewTask}/>
                 <SuggestedTask />
                 <ToDo />
