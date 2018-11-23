@@ -9,6 +9,11 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
 
+// POST feedback to Admin
+function* addFeedbackToAdmin(action) {
+  console.log('in addFeedbackToAdmin', action);
+}
+
 //POST new task to db
 function* addNewTaskSaga(action) {
   console.log('in addNewTaskSaga', action.payload);
@@ -92,6 +97,7 @@ export default function* rootSaga() {
   yield takeEvery('GET_PERSON', getPersonListSaga);
   yield takeEvery('GET_TODO', getToDoListSaga);
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
+  yield takeEvery('ADD_FEEDBACK_TO_ADMIN', addFeedbackToAdmin);
   
   yield all([
     loginSaga(),

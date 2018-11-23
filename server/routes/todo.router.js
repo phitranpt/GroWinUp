@@ -9,7 +9,8 @@ router.get('/:id', (req, res) => {
                      JOIN admin_user ON admin_user.user_id = person.id
                      JOIN user_task ON user_task.user_id = admin_user.user_id
                      JOIN task ON task.id = user_task.task_id
-                     WHERE person.id = $1;`;
+                     WHERE person.id = $1 AND user_task.completed = FALSE
+                     ORDER BY task.task_name ASC;`;
     pool.query(sqlText, [personId])
         .then((result) => {
             console.log('got todo back from GET router', result);

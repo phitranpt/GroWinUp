@@ -18,6 +18,7 @@ import AddTask from '../AddTask/AddTask';
 import AddUser from '../AddUser/AddUser';
 import AdminInbox from '../AdminInbox/AdminInbox';
 import AddNewTask from '../AddTask/AddNewTask';
+import ChildDashboard from '../ChildDashboard/ChildDashboard';
 
 import './App.css';
 
@@ -56,6 +57,10 @@ class App extends Component {
             <ProtectedRoute
               path="/adminInbox"
               component={AdminInbox}
+            />
+            <ProtectedRoute
+              path="/childDashboard"
+              component={ChildDashboard}
             />
             <Route render={() => <h1>404</h1>} />
           </Switch>

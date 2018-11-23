@@ -26,7 +26,6 @@ class Dashboard extends Component {
 
     //GET list of people
     componentDidMount() {
-        console.log('in getPersonList');
         this.props.dispatch( { type: 'GET_PERSON' } )
     }
 

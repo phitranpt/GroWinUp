@@ -24,14 +24,14 @@ class SuggestedTask extends Component {
                 {this.props.reduxState.taskList.map(task => {
                     return (
                         <Card className="taskCard" key={task.id}>
-                        <CardActionArea onClick={()=> this.handleClick(task.id)}>
-                            <CardContent>
-                                <Typography className="name" gutterBottom variant="h6" component="h2">
-                                    {task.task_name}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
+                            <CardActionArea onClick={()=> this.handleClick(task.id)}>
+                                <CardContent>
+                                    <Typography className="name" gutterBottom variant="h6" component="h2">
+                                        {task.task_name}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
                     )
                 })}
             </div>
