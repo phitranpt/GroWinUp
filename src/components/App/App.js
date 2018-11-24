@@ -21,6 +21,7 @@ import AddNewTask from '../AddTask/AddNewTask';
 import ChildDashboard from '../ChildDashboard/ChildDashboard';
 
 import './App.css';
+import ChildInbox from '../ChildInbox/ChildInbox';
 
 class App extends Component {
   componentDidMount () {
@@ -61,6 +62,10 @@ class App extends Component {
             <ProtectedRoute
               path="/childDashboard"
               component={ChildDashboard}
+            />
+            <ProtectedRoute
+              path="/childInbox"
+              component={ChildInbox}
             />
             <Route render={() => <h1>404</h1>} />
           </Switch>

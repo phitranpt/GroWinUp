@@ -28,6 +28,9 @@ const Nav = (props) => (
           <Link className="nav-link" to="/childDashboard">
             Child Dashboard
           </Link>
+          <Link className="nav-link" to="/childInbox">
+            Child Inbox
+          </Link>
           <LogOutButton className="nav-link"/>
         </>
       )}
