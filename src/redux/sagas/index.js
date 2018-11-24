@@ -11,7 +11,14 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 // POST feedback to Admin
 function* addFeedbackToAdmin(action) {
-  console.log('in addFeedbackToAdmin', action);
+  console.log('in addFeedbackToAdmin', action.payload);
+  try {
+    yield call(axios.put, '/api/complete/', action.payload);
+    yield put( { type: 'GET_TODO', payload: action.payload.completeUserId } );
+  }
+  catch(error) {
+    console.log('error with POST completed task request', error);
+  }
 }
 
 //POST new task to db

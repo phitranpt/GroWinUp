@@ -8,16 +8,24 @@ import UserPage from '../UserPage/UserPage';
 
 class ChildDashboard extends Component {
 
-    // componentDidMount() {
-    //     console.log('getting todo list for person', this.props.reduxState.user.id);
-    //     const childId = this.props.reduxState.user.id;
-    //     this.props.dispatch( { type: 'GET_TODO', payload: childId} )
-    // }
+    //GET a list of todo for the child dashboard
+    componentDidMount() {
+        console.log('getting todo list for person', this.props.reduxState.user.id);
+        const childId = this.props.reduxState.user.id;
+        this.props.dispatch( { type: 'GET_TODO', payload: childId} );
+    }
 
-    // sendFeedbackToAdmin = (task_name) => {
-    //     console.log('btn works', task_name);
-    //     this.props.dispatch( { type: 'ADD_FEEDBACK_TO_ADMIN', payload: task_name } )
-    // }
+    //Task is completed. Set completed as true
+    sendFeedbackToAdmin = (id) => {
+        console.log('task id is:', id);
+        console.log('user id is:', this.props.reduxState.user.id);
+        this.props.dispatch( 
+            {type: 'ADD_FEEDBACK_TO_ADMIN', 
+            payload: {
+                completeTaskId: id,
+                completeUserId: this.props.reduxState.user.id,
+            }});
+    }
 
     render() {
         return (
@@ -27,7 +35,7 @@ class ChildDashboard extends Component {
                 {this.props.reduxState.todoList.map(todo => {
                     return (
                         <Card className="taskCard" key={todo.id}>
-                            <CardActionArea onClick={() => this.sendFeedbackToAdmin()}>
+                            <CardActionArea onClick={() => this.sendFeedbackToAdmin(todo.task_id)}>
                                 <CardContent>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
                                         {todo.task_name}
