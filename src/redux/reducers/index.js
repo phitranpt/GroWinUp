@@ -33,12 +33,22 @@ const todoList = (state = [], action) => {
   }
 }
 
+const completeList = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_COMPLETE':
+      return action.payload
+    default:
+      return state;
+  }
+}
+
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in 
+  completeList,
   personList,
   taskList,
   todoList,

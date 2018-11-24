@@ -10,8 +10,8 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 // This is imported in index.js as rootSaga
 
 // POST feedback to Admin
-function* addFeedbackToAdmin(action) {
-  console.log('in addFeedbackToAdmin', action.payload);
+function* addFeedbackToAdminSaga(action) {
+  console.log('in addFeedbackToAdminSaga', action.payload);
   try {
     yield call(axios.put, '/api/complete/', action.payload);
     yield put( { type: 'GET_TODO', payload: action.payload.completeUserId } );
@@ -34,8 +34,8 @@ function* addNewTaskSaga(action) {
 }
 
 //POST new task into user todo list
-function* addTaskToUser(action) {
-  console.log('in addTaskToUser', action.payload);
+function* addTaskToUserSaga(action) {
+  console.log('in addTaskToUserSaga', action.payload);
   try {
     yield call(axios.post, `/api/todo/`, action.payload);
     yield put( { type: 'GET_TODO', payload: action.payload.userId } );
@@ -58,9 +58,21 @@ function* deletePersonSaga(action) {
   }
 }
 
+//GET completed task pending feedback
+function* getCompletedTaskSaga(action) {
+  console.log('in getCompletedTaskSaga', action);  
+  try {
+    const response = yield call(axios.get, '/api/complete/');
+    yield put( { type: 'SET_COMPLETE', payload: response.data} )
+  }
+  catch(error) {
+    console.log('error in GET getCompletedTaskSaga');
+  }
+}
+
 //GET list of persons who are not admins from db
 function* getPersonListSaga(action) {
-  console.log('in getPersonList');
+  console.log('in getPersonListSaga');
   try {
     const response = yield call(axios.get, '/api/person/');
     yield put( { type: 'SET_PERSON', payload: response.data } )
@@ -99,12 +111,13 @@ function* getToDoListSaga(action) {
 // and login triggers setting the user
 export default function* rootSaga() {
   yield takeEvery('ADD_NEW_TASK', addNewTaskSaga);
-  yield takeEvery('ADD_TASK_TO_USER', addTaskToUser);
+  yield takeEvery('ADD_TASK_TO_USER', addTaskToUserSaga);
   yield takeEvery('DELETE_PERSON', deletePersonSaga);
   yield takeEvery('GET_PERSON', getPersonListSaga);
   yield takeEvery('GET_TODO', getToDoListSaga);
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
-  yield takeEvery('ADD_FEEDBACK_TO_ADMIN', addFeedbackToAdmin);
+  yield takeEvery('ADD_FEEDBACK_TO_ADMIN', addFeedbackToAdminSaga);
+  yield takeEvery('GET_COMPLETED_TASK', getCompletedTaskSaga);
   
   yield all([
     loginSaga(),
