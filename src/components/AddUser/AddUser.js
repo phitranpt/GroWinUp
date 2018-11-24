@@ -16,6 +16,7 @@ class AddUser extends Component {
         admin: ''
     }
 
+    // register new user
     addNewPerson = (event) => {
         event.preventDefault();
         this.props.dispatch( { type: 'REGISTER_NEW_PERSON', payload: this.state } )
@@ -62,11 +63,11 @@ class AddUser extends Component {
                     name="profile_image"
                     className="adminAvatar"
                     >
-                    <FormControlLabel value="1" control={<Radio />} label="Blue Fish" />
-                    <FormControlLabel value="2" control={<Radio />} label="Crab" />
-                    <FormControlLabel value="3" control={<Radio />} label="Green Fish" />
-                    <FormControlLabel value="4" control={<Radio />} label="Owl" />
-                    <FormControlLabel value="5" control={<Radio />} label="Vulture" />
+                    <FormControlLabel value="avatar1" control={<Radio />} label="Blue Fish" />
+                    <FormControlLabel value="avatar2" control={<Radio />} label="Crab" />
+                    <FormControlLabel value="avatar3" control={<Radio />} label="Green Fish" />
+                    <FormControlLabel value="avatar4" control={<Radio />} label="Owl" />
+                    <FormControlLabel value="avatar5" control={<Radio />} label="Vulture" />
                     </RadioGroup>
 
                     <RadioGroup
