@@ -1,9 +1,29 @@
+.nav {
+    grid-area: nav;
+}
+
+.main {
+    grid-area: main;
+    position: relative;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 25% 75%;
+    grid-template-areas:
+    "nav main main"
+    "nav main main";
+    background-color: #fff;
+}
+
+
 .adminRadio {
     display: inline;
 }
 
 .card {
-    width: 15%;
+    width: 200px;
     height: 450px;
     display: inline-block;
     margin: 1%;

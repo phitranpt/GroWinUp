@@ -27,9 +27,8 @@ class AddNewTask extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h1>Add New Task</h1>
-                
                 <Router>
                     <Link to="/addTask">Back</Link>
                 </Router>

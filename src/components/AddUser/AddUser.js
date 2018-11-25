@@ -37,7 +37,7 @@ class AddUser extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h1>Add User Page</h1>
                 <form onSubmit={this.addNewPerson}>
                     <TextField 

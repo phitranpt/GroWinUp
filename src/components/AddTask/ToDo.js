@@ -7,7 +7,7 @@ class ToDo extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h5>To Do</h5>
                 {this.props.reduxState.todoList.map(todo => {
                     return (

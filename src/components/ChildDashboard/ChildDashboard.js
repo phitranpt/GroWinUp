@@ -29,7 +29,7 @@ class ChildDashboard extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h1>Child Dashboard</h1>
                 <UserPage />
                 {this.props.reduxState.todoList.map(todo => {

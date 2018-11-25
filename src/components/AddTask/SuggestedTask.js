@@ -19,7 +19,7 @@ class SuggestedTask extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h5>Suggested Tasks</h5>
                 {this.props.reduxState.taskList.map(task => {
                     return (

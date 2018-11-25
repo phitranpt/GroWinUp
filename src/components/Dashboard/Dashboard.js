@@ -31,7 +31,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h1>This is the Dashboard</h1>
                 <UserPage />
                 {this.props.reduxState.personList.map(person => {

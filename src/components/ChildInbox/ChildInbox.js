@@ -13,7 +13,7 @@ class ChildInbox extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main">
                 <h1>Child Inbox</h1>
                 {/* {this.props.reduxState.completeList.map(feedback => {
                     return (

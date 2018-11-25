@@ -19,9 +19,11 @@ import AddUser from '../AddUser/AddUser';
 import AdminInbox from '../AdminInbox/AdminInbox';
 import AddNewTask from '../AddTask/AddNewTask';
 import ChildDashboard from '../ChildDashboard/ChildDashboard';
+import ChildInbox from '../ChildInbox/ChildInbox';
 
 import './App.css';
-import ChildInbox from '../ChildInbox/ChildInbox';
+import '../Style/Style.css';
+
 
 class App extends Component {
   componentDidMount () {
@@ -31,8 +33,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Nav />
+        <div className="wrapper">
+        <Nav /> 
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/dashboard" />
