@@ -4,7 +4,6 @@
 
 .main {
     grid-area: main;
-    position: relative;
 }
 
 .wrapper {
@@ -12,8 +11,8 @@
     grid-gap: 15px;
     grid-template-columns: 25% 75%;
     grid-template-areas:
-    "nav main main"
-    "nav main main";
+    "nav main"
+    "nav main";
     background-color: #fff;
 }
 

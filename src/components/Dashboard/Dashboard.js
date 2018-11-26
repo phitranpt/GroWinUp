@@ -40,7 +40,7 @@ class Dashboard extends Component {
                             <CardActionArea onClick={this.cardAction}>
                                  <CardMedia
                                 className="cardImage"
-                                image={require ("../../Media/phitran.jpg")}
+                                image={require ("../../Media/phitran.jpg")} 
                                 title="Profile Image"
                                 />
                                 <CardContent>
