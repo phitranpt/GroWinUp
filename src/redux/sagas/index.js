@@ -70,6 +70,11 @@ function* getCompletedTaskSaga(action) {
   }
 }
 
+//POST feedback to db
+function* sendFeedbackToChildSaga(action) {
+  console.log('in sendFeedbackToChildSaga', action);
+}
+
 //GET list of persons who are not admins from db
 function* getPersonListSaga(action) {
   console.log('in getPersonListSaga');
@@ -118,6 +123,7 @@ export default function* rootSaga() {
   yield takeEvery('GET_TASK', getSuggestedTaskSaga);
   yield takeEvery('ADD_FEEDBACK_TO_ADMIN', addFeedbackToAdminSaga);
   yield takeEvery('GET_COMPLETED_TASK', getCompletedTaskSaga);
+  yield takeEvery('SEND_FEEDBACK_TO_CHILD', sendFeedbackToChildSaga);
   
   yield all([
     loginSaga(),

@@ -2,10 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../Style/Style.css';
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
+
 import { FormControlLabel, TextField, CardActions } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    group: {
+      margin: `${theme.spacing.unit}px 0`,
+      flexDirection: "row",
+    },
+    text: {
+        width: 300
+    }
+  });
 
 class AdminInboxInput extends Component {
 
@@ -21,21 +34,29 @@ class AdminInboxInput extends Component {
     }
 
     sendFeedback = (event) => {
-        this.props.dispatch( { type: 'SEND_FEEDBACK_TO_CHILD', payload: this.state } )
+        this.props.dispatch( { type: 'SEND_FEEDBACK_TO_CHILD', 
+            payload: {
+                userId: this.props.reduxState.completeList[0].user_id,
+                state: this.state 
+            }})
         this.setState({
             rating: '',
             feedback: ''
         })
         console.log('state is:', this.state);
+        console.log('user id is:', this.props.reduxState.completeList[0].user_id);
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <div>
                 <RadioGroup
                     value={this.state.rating}
                     onChange={this.handleChange}
                     name="rating"
+                    className={classes.group}
                     >
                     <FormControlLabel value="1" control={<Radio />} label="1" type="radio" />  
                     <FormControlLabel value="2" control={<Radio />} label="2" type="radio" />  
@@ -65,4 +86,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(AdminInboxInput);
+AdminInboxInput.propTypes = {
+    classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AdminInboxInput));
