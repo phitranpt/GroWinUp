@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
+
 import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  group: {
+    margin: `${theme.spacing.unit}px 0`,
+    flexDirection: "row",
+  },
+  text: {
+      width: 300
+  }
+});
 
 class RegisterPage extends Component {
   state = {
@@ -31,6 +45,9 @@ class RegisterPage extends Component {
   }
 
   render() {
+
+    const { classes } = this.props;
+
     return (
       <div className="login-form">
         {this.props.errors.registrationMessage && (
@@ -56,6 +73,7 @@ class RegisterPage extends Component {
                 placeholder="Create Username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
+                className={classes.text}
               />
           </div>
           <br></br>
@@ -66,6 +84,7 @@ class RegisterPage extends Component {
                 placeholder="Create Password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                className={classes.text}
               />
           </div>
           <div>
@@ -91,12 +110,13 @@ class RegisterPage extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+RegisterPage.propTypes = {
+  classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(RegisterPage));
 

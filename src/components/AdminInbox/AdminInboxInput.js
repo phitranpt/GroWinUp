@@ -5,10 +5,11 @@ import '../Style/Style.css';
 import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 
-import { FormControlLabel, TextField, CardActions } from '@material-ui/core';
+import { FormControlLabel, TextField, CardActions, Typography, CardContent } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
     group: {
@@ -24,7 +25,8 @@ class AdminInboxInput extends Component {
 
     state = {
         rating: '',
-        feedback: ''
+        feedback: '',
+
     }
 
     handleChange = (event) => {
@@ -33,18 +35,17 @@ class AdminInboxInput extends Component {
         });
     }
 
+    //Send feedback to child for review
     sendFeedback = (event) => {
         this.props.dispatch( { type: 'SEND_FEEDBACK_TO_CHILD', 
             payload: {
-                userId: this.props.reduxState.completeList[0].user_id,
-                state: this.state 
+                rating: parseInt(this.state.rating),
+                feedback: this.state.feedback,
+                userId: this.props.feedbackObject.user_id,
+                taskId: this.props.feedbackObject.task_id,
+                adminId: this.props.reduxState.user.id,
+                user_taskId: this.props.feedbackObject.id
             }})
-        this.setState({
-            rating: '',
-            feedback: ''
-        })
-        console.log('state is:', this.state);
-        console.log('user id is:', this.props.reduxState.completeList[0].user_id);
     }
 
     render() {
@@ -52,31 +53,49 @@ class AdminInboxInput extends Component {
 
         return (
             <div>
-                <RadioGroup
-                    value={this.state.rating}
-                    onChange={this.handleChange}
-                    name="rating"
-                    className={classes.group}
-                    >
-                    <FormControlLabel value="1" control={<Radio />} label="1" type="radio" />  
-                    <FormControlLabel value="2" control={<Radio />} label="2" type="radio" />  
-                    <FormControlLabel value="3" control={<Radio />} label="3" type="radio" />  
-                    <FormControlLabel value="4" control={<Radio />} label="4" type="radio" />  
-                    <FormControlLabel value="5" control={<Radio />} label="5" type="radio" />  
-                </RadioGroup>
+                <Card className="feedbackCard">
+                    <CardContent>
+                        <Typography className="name" gutterBottom variant="h6" component="h2">
+                            {this.props.feedbackObject.task_name}
+                        </Typography>
 
-                <TextField 
-                    value={this.state.feedback}
-                    onChange={this.handleChange}
-                    name="feedback"
-                    placeholder="Add Feedback">
-                </TextField>
+                        <Typography className="name" gutterBottom variant="h6" component="h2">
+                            {this.props.feedbackObject.username}
+                        </Typography>
 
-                <CardActions>
-                    <Button className="cardBtn" size="small" color="primary" onClick={this.sendFeedback}>
-                        Send Feedback
-                    </Button>
-                </CardActions>
+                        <Typography className="name" gutterBottom variant="h6" component="h2">
+                            Rate this task
+                        </Typography>
+
+                        <RadioGroup
+                            value={this.state.rating}
+                            onChange={this.handleChange}
+                            name="rating"
+                            className={classes.group}
+                            >
+                            <FormControlLabel value="1" control={<Radio />} label="1" type="radio" />  
+                            <FormControlLabel value="2" control={<Radio />} label="2" type="radio" />  
+                            <FormControlLabel value="3" control={<Radio />} label="3" type="radio" />  
+                            <FormControlLabel value="4" control={<Radio />} label="4" type="radio" />  
+                            <FormControlLabel value="5" control={<Radio />} label="5" type="radio" />  
+                        </RadioGroup>
+
+                        <TextField 
+                            value={this.state.feedback}
+                            onChange={this.handleChange}
+                            name="feedback"
+                            placeholder="Add Feedback"
+                            autoComplete="off"
+                            >
+                        </TextField>      
+                    </CardContent>
+
+                    <CardActions>
+                        <Button className="cardBtn" size="small" color="primary" onClick={() => this.sendFeedback(this.props.feedbackObject.task_id)}>
+                            Send Feedback
+                        </Button>
+                    </CardActions>
+                </Card>
             </div>
         );
     }

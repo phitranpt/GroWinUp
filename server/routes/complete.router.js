@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
                      FROM user_task
                      JOIN task ON task.id = user_task.task_id
                      JOIN person ON person.id = user_task.user_id
-                     WHERE user_task.completed = true;`;
+                     WHERE user_task.completed = TRUE
+                     AND user_task.rating_completed = FALSE;`;
     pool.query(sqlText)
         .then((result) => {
             console.log('got completed task back from db', result);

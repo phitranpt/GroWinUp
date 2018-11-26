@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import '../Style/Style.css';
 
 import AdminInboxInput from './AdminInboxInput';
-import Card from '@material-ui/core/Card';
-import { Typography, CardContent } from '@material-ui/core';
 
 class AdminInbox extends Component {
 
@@ -21,23 +19,10 @@ class AdminInbox extends Component {
                 <h1>Admin Inbox</h1>
                 {this.props.reduxState.completeList.map(feedback => {
                     return (
-                        <Card className="feedbackCard" key={feedback.id}>
-                            <CardContent>
-                                <Typography className="name" gutterBottom variant="h6" component="h2">
-                                    {feedback.task_name}
-                                </Typography>
-
-                                <Typography className="name" gutterBottom variant="h6" component="h2">
-                                    {feedback.username}
-                                </Typography>
-
-                                <Typography className="name" gutterBottom variant="h6" component="h2">
-                                    Rate this task
-                                </Typography>
-                                
-                                <AdminInboxInput />
-                            </CardContent>
-                        </Card>
+                      <AdminInboxInput 
+                      feedbackObject={feedback}
+                      key={feedback.id} 
+                      />  
                     )
                 })}
             </div>

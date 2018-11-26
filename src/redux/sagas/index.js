@@ -9,7 +9,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
 
-// POST feedback to Admin
+// PUT feedback to Admin
 function* addFeedbackToAdminSaga(action) {
   console.log('in addFeedbackToAdminSaga', action.payload);
   try {
@@ -70,9 +70,16 @@ function* getCompletedTaskSaga(action) {
   }
 }
 
-//POST feedback to db
+//PUT feedback to db for child to see
 function* sendFeedbackToChildSaga(action) {
-  console.log('in sendFeedbackToChildSaga', action);
+  console.log('in sendFeedbackToChildSaga', action.payload);
+  try {
+    yield call(axios.put, '/api/feedback', action.payload);
+    yield put( { type: 'GET_COMPLETED_TASK' } )
+  }
+  catch(error) {
+    console.log('error with PUT feedback to child request', error);
+  }
 }
 
 //GET list of persons who are not admins from db
