@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../Style/Style.css';
+import {withStyles} from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 import { TextField, FormControlLabel } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+
+const styles = theme => ({
+    group: {
+      margin: `${theme.spacing.unit}px 0`,
+      flexDirection: "row",
+    },
+    text: {
+        width: 300
+    }
+  });
 
 class AddUser extends Component {
 
@@ -36,10 +48,12 @@ class AddUser extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <h1>Add User Page</h1>
                 <form onSubmit={this.addNewPerson}>
+                <h1>Add new user</h1>
                     <TextField 
                     label="Create User Name"
                     value={this.state.username}
@@ -47,21 +61,23 @@ class AddUser extends Component {
                     margin="normal"
                     name="username"
                     type="text"
+                    className={classes.text}
                     /><br></br>
                      <TextField 
-                    label="Create New Password"
+                    label="Create Password"
                     value={this.state.password}
                     onChange={this.handleChange}
                     margin="normal"
                     name="password"
                     type="password"
+                    className={classes.text}
                     /><br></br>
 
                     <RadioGroup
                     value={this.state.profile_image}
                     onChange={this.handleChange}
                     name="profile_image"
-                    className="adminAvatar"
+                    className={classes.group}
                     >
                     <FormControlLabel value="avatar1" control={<Radio />} label="Blue Fish" />
                     <FormControlLabel value="avatar2" control={<Radio />} label="Crab" />
@@ -74,7 +90,7 @@ class AddUser extends Component {
                     value={this.state.admin}
                     onChange={this.handleChange}
                     name="admin"
-                    className="adminRadio"
+                    className={classes.group}
                     >
                     <FormControlLabel value="true" control={<Radio />} label="Admin" />
                     <FormControlLabel value="false" control={<Radio />} label="Child" />
@@ -90,4 +106,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(AddUser);
+AddUser.PropTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AddUser));

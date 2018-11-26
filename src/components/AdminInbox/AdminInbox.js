@@ -16,6 +16,7 @@ class AdminInbox extends Component {
         rating: ''
     }
 
+
     //GET list of completed task pending for feedback
     componentDidMount() {
         console.log('getting completed todo list from child');
