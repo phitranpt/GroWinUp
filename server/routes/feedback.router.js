@@ -26,7 +26,6 @@ router.get('/:id', (req, res) => {
 router.put('/feedback', (req, res) => {
     console.log('in PUT feedback delete router', req.body.feedbackId);
     const feedbackRead = req.body.feedbackId;
-    console.log('queryValues', feedbackRead);
     const sqlText = `UPDATE user_task
                      SET "feedback_read" = TRUE
                      WHERE user_task.id = $1;`;
