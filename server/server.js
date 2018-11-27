@@ -37,7 +37,6 @@ app.use('/api/gallery', galleryRouter);
 app.use('/api/complete', completeRouter);
 app.use('/api/feedback', feedbackRouter);
 
-
 // Serve static files
 app.use(express.static('build'));
 

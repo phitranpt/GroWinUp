@@ -21,11 +21,22 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const profile_image = req.body.profile_image;
   const admin = req.body.admin;
+  const adminId = req.body.adminId;
 
-  const queryText = 'INSERT INTO person (username, password, profile_image, admin) VALUES ($1, $2, $3, $4) RETURNING id';
-  pool.query(queryText, [username, password, profile_image, admin])
-    .then(() => { res.sendStatus(201); })
-    .catch((err) => { next(err); });
+  const queryText1 = `INSERT INTO person (username, password, profile_image, admin) 
+                     VALUES ($1, $2, $3, $4) RETURNING id;`;
+
+  const queryText2 = `INSERT INTO admin_user (admin_id, user_id) VALUES ($1, $2);`;
+  pool.query(queryText1, [username, password, profile_image, admin])
+    .then((result) => { 
+      console.log('pool results', result.rows);
+
+      pool.query(queryText2, [adminId, result.rows[0].id])
+      res.sendStatus(201); 
+    })
+    .catch((error) => { 
+      next(error); 
+    });
 });
 
 // Handles login form authenticate/login POST

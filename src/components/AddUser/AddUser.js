@@ -31,14 +31,15 @@ class AddUser extends Component {
     //Register new user
     addNewPerson = (event) => {
         event.preventDefault();
-        this.props.dispatch( { type: 'REGISTER_NEW_PERSON', payload: this.state } )
-        this.setState({
-            username: '',
-            password: '',
-            profile_image: '',
-            admin: ''
-        })
-        console.log('state', this.state);
+        this.props.dispatch( 
+            {type: 'REGISTER_NEW_PERSON', 
+                payload: {
+                    username: this.state.username,
+                    password: this.state.password,
+                    profile_image: this.state.profile_image,
+                    admin: this.state.admin,
+                    adminId: this.props.reduxState.user.id
+                }})
     }
 
     handleChange = (event) => {
