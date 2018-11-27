@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import '../Style/Style.css';
 import {withStyles} from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 import { TextField, FormControlLabel } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
@@ -106,8 +106,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-AddUser.PropTypes = {
-    classes: PropTypes.object.isRequired,
+AddUser.propTypes = {
+    classes: propTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(AddUser));

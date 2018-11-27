@@ -2,6 +2,26 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//GET feedback from db for child
+router.get('/:id', (req, res) => {
+    console.log('in GET feedback router', req.params.id)
+    const personId = req.params.id;
+    const sqlText = `SELECT * FROM user_task
+                     WHERE user_task.rating_completed = TRUE
+                     AND user_task.feedback_read = FALSE
+                     AND user_task.feedback = $1
+                     ORDER BY user_task.id;`;
+    pool.query(sqlText, [personId])
+        .then((result) => {
+            console.log('got list of feedback from GET router', result);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('error in completing GET query', error);
+            res.sendStatus(500);
+        })
+})
+
 //PUT user_task to add rating, feedback, and mark rating_feedback = TRUE
 router.put('/', (req, res) => {
     console.log('in PUT feedback router', req.body);

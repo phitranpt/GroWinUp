@@ -73,6 +73,7 @@ class LoginPage extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
                 className={classes.text}
+                autoComplete="off"
               />
           </div>
           <br></br>

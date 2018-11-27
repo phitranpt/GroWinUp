@@ -5,10 +5,6 @@ import userSaga from './userSaga';
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-// rootSaga is the primary saga.
-// It bundles up all of the other sagas so our project can use them.
-// This is imported in index.js as rootSaga
-
 // PUT feedback to Admin
 function* addFeedbackToAdminSaga(action) {
   console.log('in addFeedbackToAdminSaga', action.payload);
@@ -67,6 +63,18 @@ function* getCompletedTaskSaga(action) {
   }
   catch(error) {
     console.log('error in GET getCompletedTaskSaga');
+  }
+}
+
+//GET feedback from db
+function* getFeedbackSaga(action) {
+  console.log('in getFeedbackSaga', action.payload);
+  try {
+    const response = yield call(axios.get, `/api/feedback/${action.payload}`);
+    yield put( { type: 'SET_FEEDBACK', payload: response.data } )
+  }
+  catch(error) {
+    console.log('error in GET feedback request', error);
   }
 }
 
@@ -131,6 +139,7 @@ export default function* rootSaga() {
   yield takeEvery('ADD_FEEDBACK_TO_ADMIN', addFeedbackToAdminSaga);
   yield takeEvery('GET_COMPLETED_TASK', getCompletedTaskSaga);
   yield takeEvery('SEND_FEEDBACK_TO_CHILD', sendFeedbackToChildSaga);
+  yield takeEvery('GET_FEEDBACK', getFeedbackSaga);
   
   yield all([
     loginSaga(),
