@@ -9,7 +9,7 @@ router.get('/:id', (req, res) => {
     const sqlText = `SELECT * FROM user_task
                      WHERE user_task.rating_completed = TRUE
                      AND user_task.feedback_read = FALSE
-                     AND user_task.feedback = $1
+                     AND user_task.user_id = $1
                      ORDER BY user_task.id;`;
     pool.query(sqlText, [personId])
         .then((result) => {
@@ -20,6 +20,25 @@ router.get('/:id', (req, res) => {
             console.log('error in completing GET query', error);
             res.sendStatus(500);
         })
+})
+
+//PUT user_task to change feedback_read to TRUE
+router.put('/feedback', (req, res) => {
+    console.log('in PUT feedback delete router', req.body.feedbackId);
+    const feedbackRead = req.body.feedbackId;
+    console.log('queryValues', feedbackRead);
+    const sqlText = `UPDATE user_task
+                     SET "feedback_read" = TRUE
+                     WHERE user_task.id = $1;`;
+    pool.query(sqlText, [feedbackRead])
+    .then(() => {
+        console.log('PUT request successful');
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('error in PUT request', error);
+        res.sendStatus(500);
+    })
 })
 
 //PUT user_task to add rating, feedback, and mark rating_feedback = TRUE
@@ -40,7 +59,7 @@ router.put('/', (req, res) => {
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log('error in PUT request');
+            console.log('error in PUT request', error);
             res.sendStatus(500);
         })
 })

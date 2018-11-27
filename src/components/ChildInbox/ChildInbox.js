@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../Style/Style.css';
-
 import Card from '@material-ui/core/Card';
-import { CardContent, Typography, TextField, FormControlLabel, CardActions } from '@material-ui/core';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Button from '@material-ui/core/Button';
+import { CardContent, Typography, CardActionArea } from '@material-ui/core';
+// import Radio from '@material-ui/core/Radio';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import Button from '@material-ui/core/Button';
+
+import UserPage from '../UserPage/UserPage';
 
 class ChildInbox extends Component {
 
@@ -18,18 +19,35 @@ class ChildInbox extends Component {
         this.props.dispatch( { type: 'GET_FEEDBACK', payload: childID } )
     }
 
+    //DELETE selected feedback from list
+    handleClick = (id) => {
+        console.log('feedback id is:', id);
+        this.props.dispatch(
+            {type: 'DELETE_FEEDBACK', 
+            payload: {
+                feedbackId: id,
+                userId: this.props.reduxState.user.id
+            }})
+    }
+
     render() {
         return (
             <div className="main">
                 <h1>Child Inbox</h1>
+                <UserPage />
                 {this.props.reduxState.feedbackList.map(feedback => {
                     return (
                         <Card key={feedback.id}>
-                            <CardContent>
-                                <Typography className="name" gutterBottom variant="h6" component="h2">
-                                    {feedback.rating}
-                                </Typography>
-                            </CardContent>
+                            <CardActionArea onClick={() => this.handleClick(feedback.id)}>
+                                <CardContent>
+                                    <Typography className="name" gutterBottom variant="h6" component="h2">
+                                        {feedback.rating}
+                                    </Typography>
+                                    <Typography className="name" gutterBottom variant="h6" component="h2">
+                                        {feedback.feedback}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
                         </Card>
                     )
                 })}

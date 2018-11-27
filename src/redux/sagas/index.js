@@ -42,6 +42,18 @@ function* addTaskToUserSaga(action) {
   }
 }
 
+//POST feedback_read to FALSE in db
+function* deleteFeedbackSaga(action) {
+  console.log('in deleteFeedbackSaga', action);
+  try {
+    yield call(axios.put, `/api/feedback/feedback`, action.payload);
+    yield put( { type: 'GET_FEEDBACK', payload: action.payload.userId } )
+  }
+  catch(error) {
+    console.log('error with PUT feedback at child inbox', error);
+  }
+}
+
 //DELETE person from db
 function* deletePersonSaga(action) {
   console.log('in deletePersonSaga', action);
@@ -140,6 +152,7 @@ export default function* rootSaga() {
   yield takeEvery('GET_COMPLETED_TASK', getCompletedTaskSaga);
   yield takeEvery('SEND_FEEDBACK_TO_CHILD', sendFeedbackToChildSaga);
   yield takeEvery('GET_FEEDBACK', getFeedbackSaga);
+  yield takeEvery('DELETE_FEEDBACK', deleteFeedbackSaga);
   
   yield all([
     loginSaga(),
