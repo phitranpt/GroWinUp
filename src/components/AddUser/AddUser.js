@@ -28,7 +28,7 @@ class AddUser extends Component {
         admin: ''
     }
 
-    // register new user
+    //Register new user
     addNewPerson = (event) => {
         event.preventDefault();
         this.props.dispatch( { type: 'REGISTER_NEW_PERSON', payload: this.state } )

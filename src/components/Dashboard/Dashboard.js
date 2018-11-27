@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
     //navigates admin to users addTask page
     addTask = (id) => {
-        console.log('addTask works!', id);
+        console.log('person id is:', id);
         this.props.dispatch( { type: 'GET_TODO', payload: id } )
         this.props.dispatch( { type: 'GET_TASK' } )
         this.props.history.push('/addTask')

@@ -8,12 +8,12 @@ class SuggestedTask extends Component {
 
     handleClick = (id) => {
         console.log('task id', id);
-        console.log('user id', this.props.reduxState.todoList[0].id);
+        console.log('user id', this.props.reduxState.personIdList);
         this.props.dispatch( 
             {type: 'ADD_TASK_TO_USER', 
             payload: {
                 taskId: id,
-                userId: this.props.reduxState.todoList[0].id
+                userId: this.props.reduxState.personIdList
             }})
     }
 

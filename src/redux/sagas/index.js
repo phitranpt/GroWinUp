@@ -128,10 +128,11 @@ function* getSuggestedTaskSaga(action) {
 
 //GET to do list for each person from db
 function* getToDoListSaga(action) {
-  console.log('in getToDoListSaga', action.payload);
+  console.log('in getToDoListSaga user id:', action.payload);
   try {
     const response = yield call(axios.get, `/api/todo/${action.payload}`);
     yield put( { type: 'SET_TODO', payload: response.data } )
+    yield put( { type: 'SET_PERSON_ID', payload: action.payload } )
   }
   catch(error) {
     console.log('error in GET request', error);

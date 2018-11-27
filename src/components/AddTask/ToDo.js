@@ -11,7 +11,7 @@ class ToDo extends Component {
                 <h5>To Do</h5>
                 {this.props.reduxState.todoList.map(todo => {
                     return (
-                        <Card className="taskCard" key={todo.id}>
+                        <Card className="taskCard" key={todo.task_id}>
                             <CardActionArea>
                                 <CardContent>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
