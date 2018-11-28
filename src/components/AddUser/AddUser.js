@@ -19,14 +19,16 @@ const styles = theme => ({
     }
   });
 
-class AddUser extends Component {
-
-    state = {
+const newPerson = {
         username: '',
         password: '',
         profile_image: '',
         admin: ''
-    }
+}
+
+class AddUser extends Component {
+
+    state = newPerson;
 
     //Register new user
     addNewPerson = (event) => {
@@ -40,6 +42,7 @@ class AddUser extends Component {
                     admin: this.state.admin,
                     adminId: this.props.reduxState.user.id
                 }})
+        this.setState(newPerson)
     }
 
     handleChange = (event) => {

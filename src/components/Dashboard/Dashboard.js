@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
-import { CardContent, Typography, CardActions, CardActionArea, CardMedia } from '@material-ui/core';
+import { CardContent, Typography, CardActions, CardMedia } from '@material-ui/core';
 
 import Button from '@material-ui/core/Button';
-
 import UserPage from '../UserPage/UserPage';
 
 class Dashboard extends Component {
@@ -33,30 +32,29 @@ class Dashboard extends Component {
         return (
             <div className="main">
                 <h1>This is the Dashboard</h1>
+                {JSON.stringify(this.props.reduxState.personList)}
                 <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
                         <Card className="card" key={person.id} >
-                            <CardActionArea onClick={this.cardAction}>
-                                 <CardMedia
-                                className="cardImage"
-                                image={require ("../../Media/phitran.jpg")} 
-                                title="Profile Image"
-                                />
-                                <CardContent>
-                                    <Typography className="name" gutterBottom variant="h5" component="h2">
-                                        {person.username}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                                <CardActions>
-                                    <Button className="cardBtn" size="small" color="primary" onClick={()=> this.addTask(person.id)}>
-                                        Add Task
-                                    </Button>
-                                    <Button className="cardBtn" size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>
-                                         Delete
-                                    </Button>
-                                </CardActions>
+                            <CardMedia
+                            className="cardImage"
+                            image={person.profile_image}
+                            title="Profile Image"
+                            />
+                            <CardContent>
+                                <Typography className="name" gutterBottom variant="h5" component="h2">
+                                    {person.username}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button className="cardBtn" size="small" color="primary" onClick={()=> this.addTask(person.id)}>
+                                    Add Task
+                                </Button>
+                                <Button className="cardBtn" size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>
+                                        Delete
+                                </Button>
+                            </CardActions>
                          </Card>
                     )
                 })}
