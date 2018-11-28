@@ -7,11 +7,9 @@ import {
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';
-
-import Nav from '../Nav/Nav';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+import Nav from '../Nav/Nav';
 import Dashboard from '../Dashboard/Dashboard';
 import AddTask from '../AddTask/AddTask';
 import AddUser from '../AddUser/AddUser';
@@ -45,22 +43,18 @@ class App extends Component {
               component={Dashboard}
             />
             <ProtectedRoute
-              exact
               path="/addTask"
               component={AddTask}
             />
             <ProtectedRoute
-              exact
               path="/addNewTask"
               component={AddNewTask}
             />
             <ProtectedRoute
-              exact
               path="/addUser"
               component={AddUser}
             />
             <ProtectedRoute
-              exact
               path="/adminInbox"
               component={AdminInbox}
             />
@@ -70,7 +64,6 @@ class App extends Component {
               component={ChildDashboard}
             />
             <ProtectedRoute
-              exact
               path="/childInbox"
               component={ChildInbox}
             />

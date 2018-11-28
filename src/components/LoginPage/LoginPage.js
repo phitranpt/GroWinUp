@@ -5,6 +5,7 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
   group: {
@@ -33,6 +34,7 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push('/dashboard');
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
@@ -113,6 +115,7 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({
   errors: state.errors,
+  user: state.user
 });
 
 LoginPage.propTypes = {

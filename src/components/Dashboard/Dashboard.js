@@ -32,14 +32,13 @@ class Dashboard extends Component {
         return (
             <div className="main">
                 <h1>This is the Dashboard</h1>
-                {JSON.stringify(this.props.reduxState.personList)}
                 <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
                         <Card className="card" key={person.id} >
                             <CardMedia
                             className="cardImage"
-                            image={person.profile_image}
+                            image={require("../../Media/phitran.jpg")}
                             title="Profile Image"
                             />
                             <CardContent>

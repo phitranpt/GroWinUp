@@ -9,31 +9,45 @@ const Nav = (props) => (
   <div className="nav">
         <Link to="/dashboard"><h2 className="nav-title">GroWinUp</h2></Link>
         <ul className="nav-list">
-          <li> 
+          {props.user.admin && (
+            <li> 
             <Link className="nav-link" to="/dashboard">
-            {props.user.id ? 'Dashboard' : 'Login / Register'}
+            {props.user.admin ? 'Dashboard' : 'Login / Register'}
             </Link>
-          </li>
-          <li> 
+            </li>
+          )}
+          
+          {props.user.admin && (
+            <li> 
             <Link className="nav-link" to="/addUser">
             Add User
             </Link>
-          </li>
-          <li>
+            </li>
+          )}
+
+          {props.user.admin && (
+            <li>
             <Link className="nav-link" to="/adminInbox">
             Admin Inbox
             </Link>
           </li>
-          <li>
+          )}
+
+          {!props.user.admin && (
+            <li>
             <Link className="nav-link" to="/childDashboard">
             Child Dashboard
             </Link>
-          </li>
-          <li>
+            </li>
+          )}
+
+          {!props.user.admin && (
+            <li>
             <Link className="nav-link" to="/childInbox">
             Child Inbox
             </Link>
-          </li>
+            </li>
+          )}
         </ul>
       {props.user.id && (
         <>
