@@ -13,7 +13,6 @@ const userRouter = require('./routes/user.router');
 const taskRouter = require('./routes/task.router');
 const personRouter = require('./routes/person.router');
 const todoRouter = require('./routes/todo.router');
-const galleryRouter = require('./routes/gallery.router');
 const completeRouter = require('./routes/complete.router');
 const feedbackRouter = require('./routes/feedback.router');
 
@@ -33,7 +32,6 @@ app.use('/api/person', personRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/todo', todoRouter);
 app.use('/api/user', userRouter);
-app.use('/api/gallery', galleryRouter);
 app.use('/api/complete', completeRouter);
 app.use('/api/feedback', feedbackRouter);
 

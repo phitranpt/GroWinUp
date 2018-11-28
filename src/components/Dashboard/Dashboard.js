@@ -38,7 +38,7 @@ class Dashboard extends Component {
                         <Card className="card" key={person.id} >
                             <CardMedia
                             className="cardImage"
-                            image={require("../../Media/phitran.jpg")}
+                            image={person.profile_image}
                             title="Profile Image"
                             />
                             <CardContent>

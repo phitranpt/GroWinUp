@@ -20,6 +20,9 @@ function* loginUser(action) {
     // after the user has logged in
     // get the user information from the server
     yield put({type: 'FETCH_USER'});
+    // handle which dashboard
+    // update login_mode reducer
+    
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {
