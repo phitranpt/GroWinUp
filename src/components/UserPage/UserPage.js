@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 // and then instead of `props.user.username` you could use `user.username`
 const UserPage = (props) => (
   <div>
-    <p>Welcome, { props.user.username }!</p>
-    <p>Your ID is: {props.user.id}</p>
+    <h1>Welcome, { props.user.username }!</h1>
   </div>
 );
 

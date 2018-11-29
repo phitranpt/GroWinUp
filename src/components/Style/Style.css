@@ -8,7 +8,7 @@
 
 .wrapper {
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 10px;
     grid-template-columns: 25% 75%;
     grid-template-areas:
     "nav main"
@@ -22,16 +22,17 @@
 }
 
 .card {
-    width: 200px;
+    width: 300px;
     height: 450px;
     display: inline-block;
-    margin: 1%;
+    margin: .5%;
 }
 
-.cardImage {
-    height: 300px;
+/* .cardImage {
+    height: 70%;
     padding-top: 10px;
-}
+    padding-right: 10px;
+} */
 
 .taskCard {
     height: 45px;
@@ -50,4 +51,17 @@
 
 .avatar {
     display: inline-block;
+}
+
+.nav-link {
+    font-size: 18px;
+}
+
+.icon {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.radioImage {
+    padding: 20px 10px 20px 10px;
 }

@@ -24,7 +24,7 @@ form {
   outline:0;
   cursor: pointer;
   font-size: 20px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -37,7 +37,7 @@ form {
     outline:0;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 300px;
+    margin-top: 400px;
 }
 
 .login-form {
@@ -49,5 +49,5 @@ form {
 }
 
 .login-picture {
-    margin-bottom: 20px;
+    margin-bottom: 100px;
 }

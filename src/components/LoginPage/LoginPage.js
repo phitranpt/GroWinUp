@@ -5,7 +5,6 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
-import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
   group: {
@@ -59,9 +58,9 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <img src="/images/BlueFish.png" 
-            width="200" 
-            height="200" 
+          <img src="/images/Hippo.png" 
+            width="250" 
+            height="280" 
             alt="bluefish"
             className="login-picture"
             />

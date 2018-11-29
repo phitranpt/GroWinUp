@@ -57,7 +57,7 @@ class AddUser extends Component {
         return (
             <div className="main">
                 <form onSubmit={this.addNewPerson}>
-                <h1>Add new user</h1>
+                <h1>Add New User</h1>
                     <TextField 
                     label="Create User Name"
                     value={this.state.username}
@@ -80,14 +80,37 @@ class AddUser extends Component {
                     <RadioGroup
                     value={this.state.profile_image}
                     onChange={this.handleChange}
-                    name="profile_image"
+                    name="radioGroup"
                     className={classes.group}
                     >
-                    <FormControlLabel value="avatar1" control={<Radio />} label="Blue Fish" />
-                    <FormControlLabel value="avatar2" control={<Radio />} label="Crab" />
-                    <FormControlLabel value="avatar3" control={<Radio />} label="Green Fish" />
-                    <FormControlLabel value="avatar4" control={<Radio />} label="Owl" />
-                    <FormControlLabel value="avatar5" control={<Radio />} label="Vulture" />
+                    <FormControlLabel value="images/Elephant.png" 
+                    control={<img src="images/Elephant.png" alt="elephant" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Giraffe.png" 
+                    control={<img src="images/Giraffe.png" alt="Giraffe" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Hippo.png" 
+                    control={<img src="images/Hippo.png" alt="Hippo" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Leopard.png" 
+                    control={<img src="images/Leopard.png" alt="Leopard" width="50" height="55"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Monkey.png" 
+                    control={<img src="images/Monkey.png" alt="Monkey" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Sheep.png" 
+                    control={<img src="images/Sheep.png" alt="Sheep" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
+                    <FormControlLabel value="images/Zebra.png" 
+                    control={<img src="images/Zebra.png" alt="Zebra" width="50" height="50"/>} 
+                    className="radioImage"
+                    />
                     </RadioGroup>
 
                     <RadioGroup

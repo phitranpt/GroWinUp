@@ -59,9 +59,9 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <img src="/images/Vulture.png" 
-            width="200" 
-            height="200" 
+          <img src="/images/Zebra.png" 
+            width="250" 
+            height="280" 
             alt="vulture"
             className="login-picture"
             />

@@ -3,9 +3,18 @@ import { connect } from 'react-redux';
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, CardActions, CardMedia } from '@material-ui/core';
-
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+
+const styles = theme => ({
+    card: {
+        height: 300,
+        width: 250,
+        margin: "auto",
+    }
+  });
 
 class Dashboard extends Component {
 
@@ -29,15 +38,16 @@ class Dashboard extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <h1>This is the Dashboard</h1>
                 <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
                         <Card className="card" key={person.id} >
                             <CardMedia
-                            className="cardImage"
+                            className={classes.card}
                             image={person.profile_image}
                             title="Profile Image"
                             />
@@ -66,4 +76,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+Dashboard.propTypes = {
+    classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Dashboard));
