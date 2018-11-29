@@ -7,6 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+import StarRating from './StarRating';
 
 const styles = theme => ({
     media: {
@@ -23,7 +24,7 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     card: {
-        height: 440,
+        height: 550,
         width: 300,
         margin: 10,
         display: 'inline-block'
@@ -68,6 +69,9 @@ class Dashboard extends Component {
                             <CardContent>
                                 <Typography className={classes.name}>
                                     {person.username}
+                                </Typography>
+                                <Typography className={classes.name}>
+                                    <StarRating personObject={person}/>
                                 </Typography>
                             </CardContent>
                             <CardActions className={classes.button}>

@@ -15,6 +15,7 @@ const personRouter = require('./routes/person.router');
 const todoRouter = require('./routes/todo.router');
 const completeRouter = require('./routes/complete.router');
 const feedbackRouter = require('./routes/feedback.router');
+const ratingRouter = require('./routes/rating.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/api/todo', todoRouter);
 app.use('/api/user', userRouter);
 app.use('/api/complete', completeRouter);
 app.use('/api/feedback', feedbackRouter);
+app.use('/api/rating', ratingRouter);
 
 // Serve static files
 app.use(express.static('build'));

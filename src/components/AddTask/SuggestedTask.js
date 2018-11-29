@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, CardActionArea } from '@material-ui/core';
+import { AddCircleOutline } from '@material-ui/icons';
 
 class SuggestedTask extends Component {
 
@@ -27,7 +28,7 @@ class SuggestedTask extends Component {
                             <CardActionArea onClick={()=> this.handleClick(task.id)}>
                                 <CardContent>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
-                                        {task.task_name}
+                                    {task.task_name}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
