@@ -4,14 +4,6 @@ import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-// import Dashboard from '../Dashboard/Dashboard';
-// import AddTask from '../AddTask/AddTask';
-// import AddNewTask from '../AddTask/AddNewTask';
-// import AddUser from '../AddUser/AddUser';
-// import AdminInbox from '../AdminInbox/AdminInbox';
-// import ChildDashboard from '../ChildDashboard/ChildDashboard';
-// import ChildInbox from '../ChildInbox/ChildInbox';
-
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route

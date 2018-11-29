@@ -9,10 +9,24 @@ import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
-    card: {
-        height: 300,
-        width: 250,
+    media: {
+        height: '37vh',
+        width: '37vh',
         margin: "auto",
+    },
+    name: {
+        fontSize: '1.3em',
+        textAlign: 'center',
+        fontWeight: 200
+    },
+    button: {
+        justifyContent: 'center'
+    },
+    card: {
+        height: 440,
+        width: 300,
+        margin: 10,
+        display: 'inline-block'
     }
   });
 
@@ -42,25 +56,25 @@ class Dashboard extends Component {
 
         return (
             <div className="main">
-                <UserPage />
+            <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
-                        <Card className="card" key={person.id} >
+                        <Card className={classes.card} key={person.id} >
                             <CardMedia
-                            className={classes.card}
+                            className={classes.media}
                             image={person.profile_image}
                             title="Profile Image"
                             />
                             <CardContent>
-                                <Typography className="name" gutterBottom variant="h5" component="h2">
+                                <Typography className={classes.name}>
                                     {person.username}
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button className="cardBtn" size="small" color="primary" onClick={()=> this.addTask(person.id)}>
+                            <CardActions className={classes.button}>
+                                <Button size="small" color="primary" onClick={()=> this.addTask(person.id)}>
                                     Add Task
                                 </Button>
-                                <Button className="cardBtn" size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>
+                                <Button size="small" color="secondary" onClick={()=> this.deleteProfile(person.id)}>
                                         Delete
                                 </Button>
                             </CardActions>

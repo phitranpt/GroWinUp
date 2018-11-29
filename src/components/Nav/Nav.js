@@ -10,7 +10,7 @@ const Nav = (props) => (
   <div className="nav">
         <Link to="/dashboard"><h2 className="nav-title">GroWinUp</h2></Link>
         <ul className="nav-list">
-          {props.user.admin && (
+          {props.user.admin && props.user.id && (
             <li>
             <img src="/images/Dashboard.png" alt="dashboard" width="20" height="20" className="icon"/>
             <Link className="nav-link" to="/dashboard">
@@ -19,7 +19,7 @@ const Nav = (props) => (
             </li>
           )}
           
-          {props.user.admin && (
+          {props.user.admin && props.user.id && (
             <li>
             <img src="/images/AddPerson.png" alt="add person" width="20" height="20" className="icon"/> 
             <Link className="nav-link" to="/addUser">
@@ -28,7 +28,7 @@ const Nav = (props) => (
             </li>
           )}
 
-          {props.user.admin && (
+          {props.user.admin && props.user.id && (
             <li>
             <img src="/images/AdminInbox.png" alt="admin inbox" width="20" height="20" className="icon"/> 
             <Link className="nav-link" to="/adminInbox">
@@ -37,7 +37,7 @@ const Nav = (props) => (
           </li>
           )}
 
-          {!props.user.admin && (
+          {!props.user.admin && props.user.id && (
             <li>
             <img src="/images/Dashboard.png" alt="dashboard" width="20" height="20" className="icon"/>
             <Link className="nav-link" to="/childDashboard">
@@ -46,7 +46,7 @@ const Nav = (props) => (
             </li>
           )}
 
-          {!props.user.admin && (
+          {!props.user.admin && props.user.id && (
             <li>
             <img src="/images/AdminInbox.png" alt="child inbox" width="20" height="20" className="icon"/>
             <Link className="nav-link" to="/childInbox">

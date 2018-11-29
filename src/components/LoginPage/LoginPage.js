@@ -5,6 +5,7 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
+import '../Style/Style.css';
 
 const styles = theme => ({
   group: {
@@ -12,7 +13,7 @@ const styles = theme => ({
     flexDirection: "row",
   },
   text: {
-      width: 300
+      width: 260
   }
 });
 
@@ -66,6 +67,7 @@ class LoginPage extends Component {
             />
           <br></br>
           <div>
+              <img src="images/Face.png" alt="face" width="25" height="25" className="icon" />
               <TextField
                 type="text"
                 name="username"
@@ -78,6 +80,7 @@ class LoginPage extends Component {
           </div>
           <br></br>
           <div>
+              <img src="images/Lock.png" alt="lock" width="25" height="25" className="icon" />  
               <TextField
                 type="password"
                 name="password"

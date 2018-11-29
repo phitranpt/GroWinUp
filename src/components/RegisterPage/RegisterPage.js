@@ -12,7 +12,7 @@ const styles = theme => ({
     flexDirection: "row",
   },
   text: {
-      width: 300
+      width: 260
   }
 });
 
@@ -67,6 +67,7 @@ class RegisterPage extends Component {
             />
           <br></br>
           <div>
+          <img src="images/Face.png" alt="face" width="25" height="25" className="icon" />
               <TextField
                 type="text"
                 name="username"
@@ -78,6 +79,7 @@ class RegisterPage extends Component {
           </div>
           <br></br>
           <div>
+              <img src="images/Lock.png" alt="lock" width="25" height="25" className="icon" />  
               <TextField
                 type="password"
                 name="password"

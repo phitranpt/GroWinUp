@@ -80,37 +80,16 @@ class AddUser extends Component {
                     <RadioGroup
                     value={this.state.profile_image}
                     onChange={this.handleChange}
-                    name="radioGroup"
+                    name="profile_image"
                     className={classes.group}
                     >
-                    <FormControlLabel value="images/Elephant.png" 
-                    control={<img src="images/Elephant.png" alt="elephant" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Giraffe.png" 
-                    control={<img src="images/Giraffe.png" alt="Giraffe" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Hippo.png" 
-                    control={<img src="images/Hippo.png" alt="Hippo" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Leopard.png" 
-                    control={<img src="images/Leopard.png" alt="Leopard" width="50" height="55"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Monkey.png" 
-                    control={<img src="images/Monkey.png" alt="Monkey" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Sheep.png" 
-                    control={<img src="images/Sheep.png" alt="Sheep" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
-                    <FormControlLabel value="images/Zebra.png" 
-                    control={<img src="images/Zebra.png" alt="Zebra" width="50" height="50"/>} 
-                    className="radioImage"
-                    />
+                    <FormControlLabel value="images/Elephant.png" control={<Radio/>} label="Elephant" />
+                    <FormControlLabel value="images/Giraffe.png" control={<Radio/>} label="Giraffe" />
+                    <FormControlLabel value="images/Hippo.png" control={<Radio/>} label="Hippo" />
+                    <FormControlLabel value="images/Leopard.png" control={<Radio/>} label="Leopard" />
+                    <FormControlLabel value="images/Monkey.png" control={<Radio/>} label="Monkey" />
+                    <FormControlLabel value="images/Sheep.png" control={<Radio/>} label="Sheep" />
+                    <FormControlLabel value="images/Zebra.png" control={<Radio/>} label="Zebra" />
                     </RadioGroup>
 
                     <RadioGroup
