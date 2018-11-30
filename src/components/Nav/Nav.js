@@ -12,7 +12,7 @@ const Nav = (props) => (
       <div className="nav">
             <Link to="/dashboard"><h2 className="nav-title">GroWinUp</h2></Link>
             <br></br>
-            <img src={props.user.profile_image} width="100" height="100"/>
+            <img src={props.user.profile_image} alt="profile" width="100" height="100"/>
             <br></br>
             <ul className="nav-list">
               {props.user.admin && props.user.id && (

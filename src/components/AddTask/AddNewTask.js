@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
-import { HashRouter as Router, Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+import '../Style/Style.css';
 
 const newTask = {
     task_name: '',
 }
+
+const styles = theme => ({
+    textField: {
+        width: 295,
+    }
+  });
 
 class AddNewTask extends Component {
 
@@ -25,23 +34,33 @@ class AddNewTask extends Component {
         });
     }
 
+    goBack = () => {
+        this.props.history.push('/addTask')
+    }
+
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <h1>Add New Task</h1>
-                <Router>
-                    <Link to="/addTask">Back</Link>
-                </Router>
-
                 <form onSubmit={this.addNewTask}>
+                    <h1>Add a New Task</h1>
+                    <br></br>
                     <TextField 
-                    label="Enter a new task"
+                    label="New Task to Add"
                     value={this.state.task_name}
                     onChange={this.handleChange}
                     margin="normal"
                     name="task_name"
-                    /><br></br>
-                    <input type="submit"/>
+                    autoComplete="off"
+                    variant="outlined"
+                    className={classes.textField}
+                    />
+                    <br></br>
+                    <input type="submit" className="addNewTaskBtn"/>
+                    <br></br>
+                    <button onClick={this.goBack} className="goBackBtn">Back</button>
                 </form>
             </div>
         );
@@ -52,4 +71,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(AddNewTask);
+AddNewTask.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+export default connect(mapStateToProps)(withStyles(styles)(AddNewTask));
