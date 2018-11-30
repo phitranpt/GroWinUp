@@ -60,15 +60,6 @@ const personIdList = (state = [], action) => {
   }
 }
 
-const ratingList = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_RATING':
-      return [...state, ...action.payload]
-    default:
-      return state;
-  }
-}
-
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
@@ -81,7 +72,6 @@ const rootReducer = combineReducers({
   todoList,
   feedbackList,
   personIdList,
-  ratingList
 });
 
 export default rootReducer;

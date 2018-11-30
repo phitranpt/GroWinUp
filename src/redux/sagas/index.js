@@ -126,18 +126,6 @@ function* getSuggestedTaskSaga(action) {
   }
 }
 
-//GET list of star rating per person from db
-function* getStarRatingSaga(action) {
-  console.log('in getStarRatingSaga', action.payload);
-  try {
-    const response = yield call(axios.get, `/api/rating/${action.payload}`);
-    yield put( { type: 'SET_RATING', payload: response.data } )
-  }
-  catch(error) {
-    console.log('error in GET request', error);
-  }
-}
-
 //GET to do list for each person from db
 function* getToDoListSaga(action) {
   console.log('in getToDoListSaga user id:', action.payload);
@@ -166,7 +154,6 @@ export default function* rootSaga() {
   yield takeEvery('SEND_FEEDBACK_TO_CHILD', sendFeedbackToChildSaga);
   yield takeEvery('GET_FEEDBACK', getFeedbackSaga);
   yield takeEvery('DELETE_FEEDBACK', deleteFeedbackSaga);
-  yield takeEvery('GET_STAR_RATING', getStarRatingSaga);
   
   yield all([
     loginSaga(),

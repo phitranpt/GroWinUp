@@ -7,28 +7,33 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
-import StarRating from './StarRating';
 
 const styles = theme => ({
     media: {
-        height: '37vh',
-        width: '37vh',
+        height: '30vh',
+        maxHeight: '500px',
+        width: '30vh',
+        maxWidth: '310px',
         margin: "auto",
+        backgroundColor: '#cee1ff'
     },
     name: {
         fontSize: '1.3em',
         textAlign: 'center',
-        fontWeight: 200
+        fontWeight: 200,
     },
     button: {
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative',
+        bottom: 0,
+        float: 'bottom'
     },
     card: {
-        height: 550,
-        width: 300,
+        height: 450,
+        width: 310,
         margin: 10,
-        display: 'inline-block'
-    }
+        display: 'inline-block',
+    },
   });
 
 class Dashboard extends Component {
@@ -47,7 +52,7 @@ class Dashboard extends Component {
         this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
     }
 
-    //GET list of people
+    //GET list of people and rating
     componentDidMount() {
         this.props.dispatch( { type: 'GET_PERSON' } )
     }
@@ -60,7 +65,7 @@ class Dashboard extends Component {
             <UserPage />
                 {this.props.reduxState.personList.map(person => {
                     return (
-                        <Card className={classes.card} key={person.id} >
+                        <Card className={classes.card} key={person.id}>
                             <CardMedia
                             className={classes.media}
                             image={person.profile_image}
@@ -71,7 +76,7 @@ class Dashboard extends Component {
                                     {person.username}
                                 </Typography>
                                 <Typography className={classes.name}>
-                                    <StarRating personObject={person}/>
+                                    {person.round}
                                 </Typography>
                             </CardContent>
                             <CardActions className={classes.button}>

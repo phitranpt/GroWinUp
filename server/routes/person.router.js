@@ -4,7 +4,10 @@ const router = express.Router();
 
 //GET all suggested task router
 router.get('/', (req, res) => {
-    const sqlText = 'SELECT * FROM person ORDER BY id ASC;';
+    const sqlText = `SELECT person.id, user_task.user_id, person.username, person.profile_image, ROUND(AVG(user_task.rating), 2) FROM person
+                     FULL JOIN user_task ON user_task.user_id = person.id
+                     GROUP BY person.id, user_task.user_id, person.username, person.profile_image
+                     ORDER BY person.id ASC;`;
     pool.query(sqlText)
         .then((result) => {
             console.log('got person list back from GET router', result);
