@@ -2,9 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
-import { CardContent, Typography, CardActionArea } from '@material-ui/core';
+import { Typography, CardActionArea } from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
+import { AddCircleOutline } from '@material-ui/icons';
 
-import UserPage from '../UserPage/UserPage';
+const styles = theme => ({
+    icon: {
+        height: '40px',
+        width: '40px',
+        marginRight: '20px',
+        marginTop: '10px'
+    },
+    textfield: {
+        height: '65px',
+    },
+    inline: {
+        position: 'relative',
+        fontSize: '20px',
+        marginLeft: '20px',
+    }
+  });
 
 class ChildDashboard extends Component {
 
@@ -28,18 +46,20 @@ class ChildDashboard extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <UserPage />
+                <h1>Welcome {this.props.reduxState.user.username}!</h1>
+                <h4>Task List</h4>
                 {this.props.reduxState.todoList.map(todo => {
                     return (
-                        <Card className="taskCard" key={todo.id}>
+                        <Card className={classes.textfield} key={todo.id}>
                             <CardActionArea onClick={() => this.sendFeedbackToAdmin(todo.task_id)}>
-                                <CardContent>
-                                    <Typography className="name" gutterBottom variant="h6" component="h2">
-                                        {todo.task_name}
-                                    </Typography>
-                                </CardContent>
+                                <Typography className={classes.inline}>
+                                    <AddCircleOutline className={classes.icon} />{todo.task_name}
+                                </Typography>
                             </CardActionArea>
                         </Card>
                     )
@@ -53,4 +73,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(ChildDashboard);
+ChildDashboard.propTypes = {
+    classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(ChildDashboard));

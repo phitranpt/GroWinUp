@@ -1,9 +1,12 @@
 .nav-title {
     font-size: 45px;
     display: inline-block;
-    color: #699dfd;
-    margin-left: 15px;
-    font-family: 'Caveat';
+    color: #ffffff;
+    margin-left: 16%;
+}
+
+.nav-image {
+  margin-left: 27%;
 }
 
 .nav {
@@ -23,11 +26,20 @@
 .nav-list {
   list-style-type: none;
   padding-left: 0px;
+  margin-top: 50px;
 }
 
 li {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
   width: 100%;
   border-bottom: .5px solid rgb(141, 139, 139);
+}
+
+.logout-link  {
+  color: rgb(141, 139, 139);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  font-size: larger;
 }

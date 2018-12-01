@@ -8,14 +8,16 @@ import propTypes from 'prop-types';
 import { TextField, FormControlLabel } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import swal from 'sweetalert2';
 
 const styles = theme => ({
     group: {
-      margin: `${theme.spacing.unit}px 0`,
       flexDirection: "row",
     },
     text: {
-        width: 300
+        width: 300,
+        marginBottom: 20,
+        marginTop: 20
     }
   });
 
@@ -43,6 +45,11 @@ class AddUser extends Component {
                     adminId: this.props.reduxState.user.id
                 }})
         this.setState(newPerson)
+        swal({
+            title: 'Good Job!',
+            text: 'You\'ve increased your kingdom size',
+            type: 'success',
+        })
     }
 
     handleChange = (event) => {
@@ -51,32 +58,37 @@ class AddUser extends Component {
         });
     }
 
+    goBack = () => {
+        this.props.history.push('/dashboard')
+    }
+
     render() {
         const { classes } = this.props;
 
         return (
             <div className="main">
-                <form onSubmit={this.addNewPerson}>
-                <h1>Add New User</h1>
+                <form>
+                <h1>Add to Kingdom</h1>
                     <TextField 
                     label="Create User Name"
                     value={this.state.username}
                     onChange={this.handleChange}
-                    margin="normal"
                     name="username"
-                    type="text"
                     className={classes.text}
+                    variant="outlined"
                     /><br></br>
                      <TextField 
                     label="Create Password"
                     value={this.state.password}
                     onChange={this.handleChange}
-                    margin="normal"
                     name="password"
                     type="password"
+                    variant="outlined"
                     className={classes.text}
                     /><br></br>
+                    <br></br>
 
+                    <p>Choose Your Animal Below:</p>
                     <RadioGroup
                     value={this.state.profile_image}
                     onChange={this.handleChange}
@@ -91,17 +103,22 @@ class AddUser extends Component {
                     <FormControlLabel value="images/Sheep.png" control={<Radio/>} label="Sheep" />
                     <FormControlLabel value="images/Zebra.png" control={<Radio/>} label="Zebra" />
                     </RadioGroup>
+                    <br></br>
 
+                    <br></br>
+                    <p>Are they a leader of the kingdom?</p>
                     <RadioGroup
                     value={this.state.admin}
                     onChange={this.handleChange}
                     name="admin"
                     className={classes.group}
                     >
-                    <FormControlLabel value="true" control={<Radio />} label="Admin" />
-                    <FormControlLabel value="false" control={<Radio />} label="Child" />
+                    <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                    <FormControlLabel value="false" control={<Radio />} label="No" />
                     </RadioGroup>
-                    <input type="submit"/>
+                    <button onClick={this.addNewPerson} className="addNewPersonBtn">Submit</button>
+                    <br></br>
+                    <button onClick={this.goBack} className="goBackBtn">Back</button>
                 </form>
             </div>
         );

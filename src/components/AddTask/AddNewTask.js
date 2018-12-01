@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert2';
 
 import '../Style/Style.css';
 
@@ -25,7 +26,11 @@ class AddNewTask extends Component {
         this.props.dispatch( { type: 'ADD_NEW_TASK', payload: this.state } )
         this.setState(newTask);
         console.log('in addNewTask', this.state);
-        
+        swal({
+            title: 'Good Job!',
+            text: 'There is so much to do in your kingdom!',
+            type: 'success',
+        })
     }
 
     handleChange = (event) => {

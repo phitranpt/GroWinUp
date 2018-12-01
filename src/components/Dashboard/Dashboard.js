@@ -59,13 +59,17 @@ class Dashboard extends Component {
         }).then((result) => {
             if(result.value) {
                 this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
-                swal(
-                    'Success they are no longer part of your family!'
-                )
+                swal({
+                    title: 'Success!',
+                    text: 'They have been banished from your kingdom',
+                    type: 'success'
+                })
             } else if (result.dismiss === swal.DismissReason.cancel) {
-                swal(
-                    'The animal kingdom is safe!'
-                )
+                swal({
+                    title: 'Okay',
+                    text: 'The animal kingdom has been saved!',
+                    type: 'info'
+                })
             }
         })
     }

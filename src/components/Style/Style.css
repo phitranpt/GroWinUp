@@ -58,7 +58,7 @@
     margin-right: 10px;
 }
 
-.addNewTaskBtn {
+.addNewTaskBtn, .addNewPersonBtn {
     background-color: #ffffff;
     border: 3px solid #809fcf;
     color: #809fcf;
