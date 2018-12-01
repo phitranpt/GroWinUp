@@ -11,13 +11,16 @@ const styles = theme => ({
     icon: {
         height: '40px',
         width: '40px',
-        margin: '10px',
+        marginRight: '20px',
+        marginTop: '10px'
     },
     textfield: {
-        height: '60px'
+        height: '65px',
     },
     inline: {
-        display: 'inline'
+        position: 'relative',
+        fontSize: '20px',
+        marginLeft: '20px',
     }
   });
 
@@ -35,19 +38,19 @@ class SuggestedTask extends Component {
     }
 
     render() {
+
         const { classes } = this.props;
 
         return (
             <div className="main">
-                <h5>Suggested Tasks</h5>
+                <h4>Suggested Tasks</h4>
                 {this.props.reduxState.taskList.map(task => {
                     return (
                         <Card className={classes.textfield} key={task.id}>
                             <CardActionArea onClick={()=> this.handleClick(task.id)}>
                                 <Typography className={classes.inline}>
-                                    <AddCircleOutline className={classes.icon} /> {task.task_name}
+                                    <AddCircleOutline className={classes.icon} />{task.task_name}
                                 </Typography>
-                                    
                             </CardActionArea>
                         </Card>
                     )

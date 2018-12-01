@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SuggestedTask from './SuggestedTask';
 import ToDo from './ToDo';
-import { Add } from '@material-ui/icons';
+import { LibraryAddOutlined } from '@material-ui/icons';
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
+
+const styles = theme => ({
+    icon: {
+        height: '40px',
+        width: '40px',
+        marginTop: 20,
+        display: 'inline'
+    }
+  });
 
 class AddTask extends Component {
 
@@ -11,9 +22,12 @@ class AddTask extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <Add onClick={this.addNewTask}/>
+                <LibraryAddOutlined onClick={this.addNewTask} className={classes.icon}/>
                 <SuggestedTask />
                 <ToDo />
             </div>
@@ -25,4 +39,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(AddTask);
+AddTask.propTypes = {
+    classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AddTask));
