@@ -7,6 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+import swal from 'sweetalert2';
 
 const styles = theme => ({
     media: {
@@ -49,7 +50,24 @@ class Dashboard extends Component {
     //DELETE person from list
     deleteProfile = (id) => {
         console.log('delete btn!');
-        this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
+        swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Delete Forever!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if(result.value) {
+                this.props.dispatch( { type: 'DELETE_PERSON', payload: id} )
+                swal(
+                    'Success they are no longer part of your family!'
+                )
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal(
+                    'The animal kingdom is safe!'
+                )
+            }
+        })
     }
 
     //GET list of people and rating

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, CardActionArea } from '@material-ui/core';
+import { AddCircleOutline } from '@material-ui/icons';
 
 class ToDo extends Component {
 
@@ -15,7 +16,7 @@ class ToDo extends Component {
                             <CardActionArea>
                                 <CardContent>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
-                                        {todo.task_name}
+                                        <AddCircleOutline />{todo.task_name}
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
