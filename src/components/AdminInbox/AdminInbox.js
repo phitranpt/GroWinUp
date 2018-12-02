@@ -16,7 +16,7 @@ class AdminInbox extends Component {
     render() {
         return (
             <div className="main">
-                <h1>Admin Inbox</h1>
+                <h1>Inbox</h1>
                 {this.props.reduxState.completeList.map(feedback => {
                     return (
                       <AdminInboxInput 

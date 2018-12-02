@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import '../Style/Style.css';
+import 'typeface-eczar';
 
 const Nav = (props) => (
 
