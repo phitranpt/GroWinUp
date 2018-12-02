@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 
 import '../Style/Style.css';
 import Card from '@material-ui/core/Card';
-import { CardContent, Typography, CardActionArea } from '@material-ui/core';
+import { CardContent, Typography, Button, CardActions } from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+import propTypes from 'prop-types';
+import swal from 'sweetalert2';
 
-import UserPage from '../UserPage/UserPage';
+const styles = theme => ({ 
+    card: {
+        margin: '25px'
+    }
+  });
 
 class ChildInbox extends Component {
 
@@ -19,32 +26,61 @@ class ChildInbox extends Component {
     //DELETE selected feedback from list
     handleClick = (id) => {
         console.log('feedback id is:', id);
-        this.props.dispatch(
-            {type: 'DELETE_FEEDBACK', 
-            payload: {
-                feedbackId: id,
-                userId: this.props.reduxState.user.id
-            }})
+        swal({
+            title: 'Done with feedback?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if(result.value) {
+                this.props.dispatch(
+                    {type: 'DELETE_FEEDBACK', 
+                    payload: {
+                        feedbackId: id,
+                        userId: this.props.reduxState.user.id
+                    }})
+                    swal({
+                        title: 'Done!',
+                        text: 'Keep up the great work!',
+                        type: 'success'
+                    })
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal({
+                    title: 'Okay!',
+                    text: 'Your feedback is safe',
+                    type: 'info'
+                })
+            }
+        })
     }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div className="main">
-                <h1>Child Inbox</h1>
-                <UserPage />
+                <h1>Inbox</h1>
                 {this.props.reduxState.feedbackList.map(feedback => {
                     return (
-                        <Card key={feedback.id}>
-                            <CardActionArea onClick={() => this.handleClick(feedback.id)}>
+                        <Card key={feedback.id} className={classes.card}>
                                 <CardContent>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
-                                        {feedback.rating}
+                                        Your Task: {feedback.task_name}
                                     </Typography>
                                     <Typography className="name" gutterBottom variant="h6" component="h2">
-                                        {feedback.feedback}
+                                        Your rating: {feedback.rating}
+                                    </Typography>
+                                    <Typography className="name" gutterBottom variant="h6" component="h2">
+                                        Feedback: {feedback.feedback}
                                     </Typography>
                                 </CardContent>
-                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="secondary" onClick={() => this.handleClick(feedback.id)}>
+                                    Done
+                                </Button>
+                            </CardActions>
                         </Card>
                     )
                 })}
@@ -57,4 +93,8 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(ChildInbox);
+ChildInbox.propTypes = {
+    classes: propTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(ChildInbox));

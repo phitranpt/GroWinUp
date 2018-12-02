@@ -53,6 +53,7 @@ class AdminInboxInput extends Component {
     }
 
     render() {
+        
         const { classes } = this.props;
 
         return (
@@ -72,7 +73,7 @@ class AdminInboxInput extends Component {
                                 Completed By: {this.props.feedbackObject.username}
                             </Typography>
                         </Grid>
-
+                        <br></br>
                         <Grid item xs={6}>
                             <Typography>
                                 Rate the task:

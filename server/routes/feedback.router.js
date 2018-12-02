@@ -6,7 +6,10 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     console.log('in GET feedback router', req.params.id)
     const personId = req.params.id;
-    const sqlText = `SELECT * FROM user_task
+    const sqlText = `SELECT user_task.id, user_task.task_id, user_task.user_id, user_task.completed, user_task.rating, 
+                     user_task.feedback, user_task.rating_completed, user_task.feedback_read, task.task_name
+                     FROM user_task
+                     JOIN task ON task.id = user_task.task_id
                      WHERE user_task.rating_completed = TRUE
                      AND user_task.feedback_read = FALSE
                      AND user_task.user_id = $1
