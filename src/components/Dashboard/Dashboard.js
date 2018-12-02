@@ -7,6 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+import { StarRate } from '@material-ui/icons';
 import swal from 'sweetalert2';
 
 const styles = theme => ({
@@ -35,6 +36,9 @@ const styles = theme => ({
         margin: 10,
         display: 'inline-block',
     },
+    star: {
+        background: 'gold',
+    }
   });
 
 class Dashboard extends Component {
@@ -98,7 +102,7 @@ class Dashboard extends Component {
                                     {person.username}
                                 </Typography>
                                 <Typography className={classes.name}>
-                                    {person.round}
+                                    <StarRate className={classes.star}/>{person.round}
                                 </Typography>
                             </CardContent>
                             <CardActions className={classes.button}>

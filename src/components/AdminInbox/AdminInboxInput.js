@@ -10,14 +10,18 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
-    group: {
-      margin: `${theme.spacing.unit}px 0`,
+const styles = theme => ({ 
+    card: {
+        margin: '25px',
+        flexGrow: 1,
+    },
+    radio: {
       flexDirection: "row",
     },
     text: {
-        width: 300
+        width: 800,
     }
   });
 
@@ -53,42 +57,60 @@ class AdminInboxInput extends Component {
 
         return (
             <div>
-                <Card className="feedbackCard">
+                <Card className={classes.card}>
+                    <Grid container spacing={24}>
+
                     <CardContent>
-                        <Typography className="name" gutterBottom variant="h6" component="h2">
-                            {this.props.feedbackObject.task_name}
-                        </Typography>
+                        <Grid item xs={12}>
+                            <Typography variant="h6" component="h2">
+                                Task: {this.props.feedbackObject.task_name}
+                            </Typography>
+                        </Grid>
 
-                        <Typography className="name" gutterBottom variant="h6" component="h2">
-                            {this.props.feedbackObject.username}
-                        </Typography>
+                        <Grid item xs={6}>
+                            <Typography variant="h6" component="h2">
+                                Completed By: {this.props.feedbackObject.username}
+                            </Typography>
+                        </Grid>
 
-                        <Typography className="name" gutterBottom variant="h6" component="h2">
-                            Rate this task
-                        </Typography>
+                        <Grid item xs={6}>
+                            <Typography>
+                                Rate the task:
+                            </Typography>
+                        </Grid>
 
-                        <RadioGroup
-                            value={this.state.rating}
-                            onChange={this.handleChange}
-                            name="rating"
-                            className={classes.group}
-                            >
-                            <FormControlLabel value="1" control={<Radio />} label="1" type="radio" />  
-                            <FormControlLabel value="2" control={<Radio />} label="2" type="radio" />  
-                            <FormControlLabel value="3" control={<Radio />} label="3" type="radio" />  
-                            <FormControlLabel value="4" control={<Radio />} label="4" type="radio" />  
-                            <FormControlLabel value="5" control={<Radio />} label="5" type="radio" />  
-                        </RadioGroup>
-
-                        <TextField 
-                            value={this.state.feedback}
-                            onChange={this.handleChange}
-                            name="feedback"
-                            placeholder="Add Feedback"
-                            autoComplete="off"
-                            >
-                        </TextField>      
+                        <Grid item xs={6}>
+                            <RadioGroup
+                                value={this.state.rating}
+                                onChange={this.handleChange}
+                                name="rating"
+                                className={classes.radio}
+                                >
+                                <FormControlLabel value="1" control={<Radio />} label="1" type="radio" />  
+                                <FormControlLabel value="2" control={<Radio />} label="2" type="radio" />  
+                                <FormControlLabel value="3" control={<Radio />} label="3" type="radio" />  
+                                <FormControlLabel value="4" control={<Radio />} label="4" type="radio" />  
+                                <FormControlLabel value="5" control={<Radio />} label="5" type="radio" />  
+                            </RadioGroup>
+                        </Grid>
+                    
+                        <Grid item xs={6}>
+                            <TextField 
+                                value={this.state.feedback}
+                                onChange={this.handleChange}
+                                name="feedback"
+                                label="Add Feedback"
+                                multiline
+                                rowsMax="5"
+                                rows="5"
+                                margin="normal"
+                                variant="outlined"
+                                className={classes.text}
+                                >
+                            </TextField>  
+                        </Grid>    
                     </CardContent>
+                    </Grid>
 
                     <CardActions>
                         <Button className="cardBtn" size="small" color="primary" onClick={() => this.sendFeedback(this.props.feedbackObject.task_id)}>

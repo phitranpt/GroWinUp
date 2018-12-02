@@ -4,8 +4,9 @@ const router = express.Router();
 
 //GET all suggested task router
 router.get('/', (req, res) => {
-    const sqlText = `SELECT person.id, user_task.user_id, person.username, person.profile_image, ROUND(AVG(user_task.rating), 2) FROM person
+    const sqlText = `SELECT person.id, user_task.user_id, person.username, person.admin, person.profile_image, ROUND(AVG(user_task.rating), 2) FROM person
                      FULL JOIN user_task ON user_task.user_id = person.id
+                     WHERE person.admin = FALSE
                      GROUP BY person.id, user_task.user_id, person.username, person.profile_image
                      ORDER BY person.id ASC;`;
     pool.query(sqlText)
