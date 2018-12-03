@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import {withStyles} from '@material-ui/core/styles';
 import propTypes from 'prop-types';
-
 import TextField from '@material-ui/core/TextField';
 import '../Style/Style.css';
+import 'typeface-eczar';
 
 const styles = theme => ({
   group: {
@@ -65,6 +64,7 @@ class LoginPage extends Component {
             alt="bluefish"
             className="login-picture"
             />
+            <h1 className="title">GroWinUp</h1>
           <br></br>
           <div>
               <img src="images/Face.png" alt="face" width="25" height="25" className="icon" />

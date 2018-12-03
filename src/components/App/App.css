@@ -37,7 +37,7 @@ form {
     outline:0;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 400px;
+    margin-top: 440px;
 }
 
 .login-form {
@@ -50,5 +50,5 @@ form {
 }
 
 .login-picture {
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
