@@ -68,7 +68,6 @@ CREATE TABLE task (
 
 ## Screen Shot
 ![Login](wireframes/loginPage.png)
-
 ![Dashboard](wireframes/dashboard.png)
 
 ## Completed Features
@@ -84,10 +83,11 @@ CREATE TABLE task (
 ## Next Steps
 - [ ] Child Badges
 - [ ] Coins/ Rewards
-- [ ] Enabling of user to edit their avatar.
-- [ ] Choose your avatar on registration page.
-- [ ] Ability to click and drag tasks.
-- [ ] Animations.
+- [ ] Enabling of user to edit their avatar
+- [ ] Choose your avatar on registration page
+- [ ] Ability to click and drag tasks
+- [ ] Animations
+- [ ] Deploy to Heroku
 
 ### Author
 * Phi Tran
