@@ -72,22 +72,22 @@ CREATE TABLE task (
 ![Dashboard](wireframes/dashboard.png)
 
 ## Completed Features
--[x] Login
--[x] Registration
--[x] Admin/ Parent Landing
--[x] Admin Add Task
--[x] Admin Add New User
--[x] Admin Inbox
--[x] Child Landing
--[x] Child Inbox
+- [x] Login
+- [x] Registration
+- [x] Admin/ Parent Landing
+- [x] Admin Add Task
+- [x] Admin Add New User
+- [x] Admin Inbox
+- [x] Child Landing
+- [x] Child Inbox
 
 ## Next Steps
--[] Child Badges
--[] Coins/ Rewards
--[] Enabling of user to edit their avatar.
--[] Choose your avatar on registration page.
--[] Ability to click and drag tasks.
--[] Animations.
+- [ ] Child Badges
+- [ ] Coins/ Rewards
+- [ ] Enabling of user to edit their avatar.
+- [ ] Choose your avatar on registration page.
+- [ ] Ability to click and drag tasks.
+- [ ] Animations.
 
 ### Author
 * Phi Tran
