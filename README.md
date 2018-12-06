@@ -1,13 +1,17 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# GroWinUp
+GroWinUp was created and developed with parents and children in mind.  Household chores and tasks can now be tracked all in one web application.  The mission was to get children excited and feel responsible by providing them with real time feedback and positive reinforcement. Multiple user integration includes an admin and user feature which gives pre-determined access to parents and children.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Built With
 
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+* ReactJS
+* Redux
+* Saga
+* JavaScript
+* Node
+* Express
+* PostgreSQL
+* Material UI
+* SweetAlert2
 
 ## Prerequisites
 
