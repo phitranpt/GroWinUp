@@ -27,40 +27,48 @@ Before you get started, make sure you have the following software installed on y
 ### Create Database and Table
 Create a new database called GroWinUp and create a person, admin_user, user_task, and task table:
 
-* `CREATE TABLE person (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(80),
-  password VARCHAR(1000),
-  profile_image VARCHAR(80),
-  admin BOOLEAN
-);`
+```SQL
+CREATE TABLE person (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(80),
+    password VARCHAR(1000),
+    profile_image VARCHAR(80),
+    admin BOOLEAN
+);
 
-* `CREATE TABLE admin_user (
-  id SERIAL PRIMARY KEY,
-  admin_id INT REFERENCES person,
-  user_id INT REFERENCES person
-);`
+CREATE TABLE admin_user (
+    id SERIAL PRIMARY KEY,
+    admin_id INT REFERENCES person,
+    user_id INT REFERENCES person
+);
 
-* `CREATE TABLE user_task (
-  id SERIAL PRIMARY KEY,
-  task_id INT REFERENCES task,
-  user_id INT REFERENCES person,
-  completed BOOLEAN,
-  rating INT,
-  feedback VARCHAR(1000),
-  coin INT,
-  task_image VARCHAR(80),
-  giphy_badge VARCHAR(80)
-);`
+CREATE TABLE user_task (
+    id SERIAL PRIMARY KEY,
+    task_id INT REFERENCES task,
+    user_id INT REFERENCES person,
+    completed BOOLEAN,
+    rating INT,
+    feedback VARCHAR(1000),
+    coin INT,
+    task_image VARCHAR(80),
+    giphy_badge VARCHAR(80)
+);
 
-* `CREATE TABLE task (
-  id SERIAL PRIMARY KEY,
-  task_name VARCHAR(80)
-);`
+CREATE TABLE task (
+    id SERIAL PRIMARY KEY,
+    task_name VARCHAR(80)
+);
+```
 
 ### Installing
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
+
+## Screen Shot
+![Login](wireframes/loginPage.png)
+![Dashboard](wireframes/dashboard.png)
+
+
 
